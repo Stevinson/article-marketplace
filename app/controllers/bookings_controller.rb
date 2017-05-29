@@ -1,8 +1,9 @@
-# Controller that implements the logic for the bookings of the articles. Articles are booked 
+# Controller that implements the logic for the bookings of the articles. Articles are booked
 # for a particular time frame and charged by a day rate.
 class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
+    @user = current_user
   end
 
   def show

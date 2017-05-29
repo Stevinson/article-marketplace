@@ -1,2 +1,9 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<h4>Current booking</h4>
+
+<p>Start date: <strong><%= booking.start_date %></strong></p>
+<p>End date: <strong><%= booking.end_date %></strong></p>
+<hr>
+<p>Total days: <strong><%= booking.end_date - booking.start.date %></strong></p>
+<p>Price per day: <strong>£ <%= @article.price %></strong></p>
+<hr>
+<h5>Total price: <strong>£ <%= booking.price %></strong></h5>

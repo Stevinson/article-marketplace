@@ -16,7 +16,9 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    # Assign the booking to the current user
     @booking.user = current_user
+    # Assign the booking the article that was selected
     @booking.article = Article.find(params[:article_id])
     # If the booking is valid it will save to the db, otherwise retain info inputted
     if @booking.save

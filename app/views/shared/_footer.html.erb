@@ -1,19 +1,25 @@
 <!-- Footer partial which replicates Airbnb's footer. Included in the application.html.erb file -->
-<div class="footer-container">
-  <div class="footer-container">
-    <ul class="footer-list">
+<div class="footer-container text-center">
+  <div class="footer-content">
+    <ul class="footer-list list-inline">
       <li>
         <!-- !!!!!!!!! Currently points to home page -->
-        <%= link_to "About",  %>
+        <%= link_to "About", about_path, class: "footer-list-link" %>
       </li>
       <li>
-        <%= link_to "Suggest Article" %>
+        <%= link_to "Suggest Article", "https://en.wikipedia.org/wiki/Echo_chamber_\%28media\%29", class: "footer-list-link" %>
       </li>
       <li>
-        <%= link_to "Privacy" %>
+        <%= link_to "Privacy", "https://www.theguardian.com/technology/2015/mar/23/how-to-tell-if-youve-been-hacked", class: "footer-list-link" %>
       </li>
       <li>
-        <%= link_to  %>
+        <%= link_to "https://github.com/Stevinson/article-marketplace" do %>
+          <i class="fa fa-github footer-list-link" aria-hidden="true"></i>
+        <% end %>
+      <li>
+        <%= link_to "https://github.com/Stevinson/article-marketplace" do %>
+          <i class="fa fa-graduation-cap footer-list-link" aria-hidden="true"></i>
+        <% end %>
       </li>
     </ul>
   </div>

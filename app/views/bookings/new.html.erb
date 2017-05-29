@@ -1,10 +1,10 @@
-<%= form_for [@article, @booking] do |f| %>
+<%= form_for @booking do |f| %>
 
   <%= f.label :start_date %>
-  <input type="text" id="datepicker" name="booking[start_date]">
+  <input type="text" id="datepicker" name="booking.start_date">
 
   <%= f.label :end_date %>
-  <input type="text" id="datepicker" name="booking[end_date]">
+  <input type="text" id="datepicker" name="booking.end_date">
 
   <hr>
 

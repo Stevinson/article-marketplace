@@ -1,6 +1,6 @@
 # Controller to process the logic necessary on the articles that users post and buy.
 class ArticlesController < ApplicationController
-  before_action set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
     @articles = Article.all
@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
 
   def show
     @booking = Booking.new
+    @review = Review.new
   end
 
   def edit
@@ -40,7 +41,7 @@ class ArticlesController < ApplicationController
 
   # Whitelist and return a hash of the params required
   def article_params
-    params.require(:article).permit(:title, :summary, :content)
+    params.require(:article).permit(:title, :summary, :url)
   end
 
   # Find the article by its ID

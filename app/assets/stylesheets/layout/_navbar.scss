@@ -25,6 +25,18 @@
 }
 
 /* Navbar right section (with form, links, button) */
+.navbar-wagon-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  form {
+    padding-left: 30px;
+  };
+  form input[type="text"] {
+    width: 300px;
+  }
+}
+
 .navbar-wagon-right {
   display: flex;
   align-items: center;

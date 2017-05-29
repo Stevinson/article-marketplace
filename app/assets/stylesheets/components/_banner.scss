@@ -1,7 +1,6 @@
 .banner {
   color: rgb(50,50,50);
-  text-align: center;
-  height: 100vh;
+  height: calc(100vh - 300px);
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   display: flex;
   align-items: center;
@@ -12,9 +11,43 @@
   font-weight: bold;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 }
-.banner p {
-  font-size: 20px;
+.banner h2 {
+  font-size: 25px;
   font-weight: lighter;
-  color: rgba(50,50,50,0.7);
+  color: rgba(0,0,0,0.7);
   margin-bottom: 20px;
+}
+
+/* Banner search form */
+.banner-wagon-search {
+  flex: 0 1 300px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 10px;
+  position: relative;
+}
+.banner-wagon-search-btn {
+  line-height: 40px;
+  color: #E6E6E6;
+  border: none;
+  background: transparent;
+  position: absolute;
+  right: 14px;
+  top: -2px;
+  z-index: 1;
+}
+.banner-wagon-search-input {
+  flex: 0 1 300px;
+  transition: all 0.15s ease;
+  line-height: 40px;
+  font-weight: lighter;
+  color: #666666;
+  border: 1px solid #E6E6E6;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 14px;
+  outline: none;
+}
+.banner-wagon-search-input:focus  {
+  border: 1px solid #CCCCCC;
 }

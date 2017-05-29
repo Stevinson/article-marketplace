@@ -1,5 +1,14 @@
 .footer {
-  background-color: $main-offwhite;
-  padding: 10px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: $unpolarise-off-white;
+  color: $unpolarise-dark-grey;
+  // padding: 10px;
+  // border-top: 1px solid rgba(0, 0, 0, 0.1);
+  &-content {
+
+  }
+}
+.footer-list {
+  &-link {
+
+  }
 }

@@ -57,7 +57,7 @@
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: $unpolarise-orange;
   text-decoration: none;
 }
 
@@ -110,6 +110,7 @@
 }
 .navbar-wagon-search-input:focus  {
   border: 1px solid #CCCCCC;
+  border: 1px solid $unpolarise-orange;
 }
 
 /* Navbar dropdown menu */

@@ -1,3 +1,4 @@
+# Controller to process the logic necessary on the articles that users post and buy.
 class ArticlesController < ApplicationController
   before_action set_article, only: [:show, :edit, :update, :destroy]
 
@@ -36,10 +37,12 @@ class ArticlesController < ApplicationController
 
   private
 
+  # Whitelist and return a hash of the params required
   def article_params
     params.require(:article).permit(:title, :summary, :content)
   end
 
+  # Find the article by its ID
   def set_article
     @article = Article.find(params[:id])
   end

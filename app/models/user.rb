@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :booked_articles, through: :bookings, source: :article
   has_many :reviews
+
+  validates :username, uniqueness: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

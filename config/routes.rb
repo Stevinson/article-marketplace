@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-devise_for :users
+  # Devise routes
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
   # Redirect to this page upon entering webpage
   root to: 'pages#home'
 
@@ -9,7 +11,6 @@ devise_for :users
   resources :users, only: [:new, :create, :edit, :update, :show] do
     resources :bookings, only: [:index]
   end
-
 
   # Separate index page to display all the articles of an author (user)
   namespace :admin do

@@ -16,40 +16,45 @@
 
   <div class="row">
     <% @user.articles.each do |article| %>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="col-xs-10 col-sm-5 col-md-3 col-xs-offset-1">
         <!-- One card per booking linking to the article page -->
-        <%= link_to article_path(article) do %>
-          <div class="card">
-            <h3><%= article.title.capitalize %></h3>
+          <div class="card-small">
 
-            <!-- Date added -->
-            <h4>Posted on <%= article.created_at.to_date %></h4>
+            <!-- !!!!!!!!!!!!!!!!!!!!! Article image to go here -->
 
-            <!-- Fontawesome icons for edit and delete -->
-            <%= link_to edit_article_path(article) do %>
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            <% end %>
-            <%= link_to article_path(article), method: :delete do %>
-              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <%= link_to article_path(article) do %>
+              <h3 class="card-small-title"><%= article.title.capitalize %></h3>
             <% end %>
 
-            <!-- Average review -->
-            <p>
-              <% average_rating = article.reviews.reduce(0){|sum, r| sum + r.rating} / article.reviews.length.to_f %>
-              <% 1.upto(5) do |i| %>
-                <% if i <= average_rating %>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                <% elsif (i-1..i).include? average_rating  %>
-                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                <% else %>
-                  <i class="fa fa-star-o" aria-hidden="true"></i>
-               <% end %>
+            <div class="card-small-content">
+              <!-- Date added -->
+              <p>Posted on <%= article.created_at.to_date %></p>
+
+              <!-- Fontawesome icons for edit and delete -->
+              <%= link_to edit_article_path(article) do %>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               <% end %>
-              <p><em>(<%= article.reviews.length %> reviews)</em></p>
-            </p>
-            <p><em><%= article.summary %></em></p>
+              <%= link_to article_path(article), method: :delete do %>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              <% end %>
+
+              <!-- Average review -->
+              <p>
+                <% average_rating = article.reviews.reduce(0){|sum, r| sum + r.rating} / article.reviews.length.to_f %>
+                <% 1.upto(5) do |i| %>
+                  <% if i <= average_rating %>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  <% elsif (i-1..i).include? average_rating  %>
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                  <% else %>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                 <% end %>
+                <% end %>
+                <p><em>(<%= article.reviews.length %> reviews)</em></p>
+              </p>
+              <p><span class="italic"><%= article.summary %></span></p>
+            </div>
           </div>
-        <% end %>
       </div>
     <% end %>
   </div>

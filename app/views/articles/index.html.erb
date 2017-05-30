@@ -13,7 +13,9 @@
         <%= link_to article_path(article) do %>
           <div class="card">
             <h3><%= article.title.capitalize %></h3>
-            <h4>By <%= article.user.name %> - created on <%= article.created_at.to_date %></h4>
+
+            <!-- Author and date added -->
+            <h4>By <%= "#{article.user.first_name} #{article.user.last_name.first}." %> - created on <%= article.created_at.to_date %></h4>
 
             <!-- Average review -->
             <p>

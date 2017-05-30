@@ -1,0 +1,22 @@
+<%= form_for [@article, @booking] do |f| %>
+
+  <%= f.label :start_date %>
+  <input type="text" id="datepicker" name="booking.start_date">
+
+  <%= f.label :end_date %>
+  <input type="text" id="datepicker" name="booking.end_date">
+
+  <hr>
+
+  <!-- Pricing information -->
+
+  <p>Access days: 10</p>
+  <p>Price per day: £ <%= @article.price %></p>
+
+  <hr>
+
+  <p><strong>Total price: £ 10</strong></p>
+  <% f.hidden_field :price, value: 10 %>
+
+  <%= f.submit %>
+<% end %>

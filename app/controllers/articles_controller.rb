@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
     if @article.save
       redirect_to article_path(@article)
     else
@@ -41,7 +42,7 @@ class ArticlesController < ApplicationController
 
   # Whitelist and return a hash of the params required
   def article_params
-    params.require(:article).permit(:title, :summary, :url)
+    params.require(:article).permit(:title, :summary, :url, :price)
   end
 
   # Find the article by its ID

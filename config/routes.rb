@@ -13,9 +13,7 @@ Rails.application.routes.draw do
   end
 
   # Separate index page to display all the articles of an author (user)
-  namespace :admin do
-    resources :articles, only: [:index]
-  end
+  get 'dashboard', to: 'pages#dashboard'
 
   resources :articles do
     resources :reviews, only: [:new, :create]

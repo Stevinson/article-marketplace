@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <h2>All articles</h2>
+      <h2>Your own articles</h2>
     </div>
   </div>
 
@@ -15,16 +15,23 @@
 
 
   <div class="row">
-    <% @articles.each do |article| %>
+    <% @user.articles.each do |article| %>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <!-- One card per booking linking to the article page -->
         <%= link_to article_path(article) do %>
           <div class="card">
             <h3><%= article.title.capitalize %></h3>
 
-            <!-- Author (name shown if provided at signup) and date added -->
-            <h4><em>By <%= "#{article.user.first_name} #{article.user.last_name[0]}." if (article.user.first_name && article.user.first_name) %></em></h4>
-            <p><em>Posted on <%= article.created_at.to_date %></em></p>
+            <!-- Date added -->
+            <h4>Posted on <%= article.created_at.to_date %></h4>
+
+            <!-- Fontawesome icons for edit and delete -->
+            <%= link_to edit_article_path(article) do %>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to article_path(article), method: :delete do %>
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <% end %>
 
             <!-- Average review -->
             <p>
@@ -46,5 +53,4 @@
       </div>
     <% end %>
   </div>
-
 </div>

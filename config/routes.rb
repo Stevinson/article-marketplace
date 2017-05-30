@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-devise_for :users
+  # Devise routes
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
   # Redirect to this page upon entering webpage
   root to: 'pages#home'
 

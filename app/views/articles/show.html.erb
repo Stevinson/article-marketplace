@@ -42,9 +42,17 @@
 
     </div>
 
+    <!-- Booking information not displayed for owners, only for readers. If a reader has an active booking, booking details are displayed. Otherwise, a booking form is displayed -->
     <div class="col-xs-4">
-      <%= render 'bookings/new' %>
+      <% unless @article.user == current_user %>
+        <% if current_user.today_booked_articles.include? @article %>
+          <%= render template: 'bookings/show' %>
+        <% else %>
+          <%= render template: 'bookings/new' %>
+        <% end %>
+      <% end %>
     </div>
+
   </div>
 
   <!-- URL shown only to article owners and readers who currently have a booking -->

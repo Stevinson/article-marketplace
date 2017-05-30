@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
 
     <div class="col-xs-8">
@@ -6,29 +7,12 @@
       <h2><%= @article.title %></h2>
       <p><em><%= @article.summary %></em></p>
       <p>(£ <%= @article.price %> per day) </p>
-
-      <!-- Show URL/content only if accessible, i.e. owned or booked -->
-
-      # Create an array of all the articles that a user has access to (both those they wrote and bought)
-      <% accessible_articles = current_user.articles + current_user.today_booked_articles %>
-
-      <% if accessible_articles.include? @article %>
-        <%= link_to @article.url, @article.url %>
-      <% else %>
-        <p>You do not have access to this article</p>
-      <% end %>
+      <%= link_to @article.url, @article.url %>
 
     </div>
 
     <div class="col-xs-4">
-
-      <!-- Show booking form if not currently booked, or booking details if active booking -->
-      <% if current_user.today_booked_articles.include? @article %>
-        <%= render template: 'bookings/show' %>
-      <% else %>
-        <%= render template: 'bookings/new', article: @article, booking: @booking %>
-      <% end %>
-
+      <%= render 'bookings/new' %>
     </div>
 
   </div>
@@ -69,8 +53,10 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <h4>Leave a review</h4>
-      <%= render template: 'reviews/new', article: @article, review: @review %>
+      <% if current_user %>
+        <h4>Leave a review</h4>
+        <%= render template: 'reviews/new' %>
+      <% end %>
     </div>
   </div>
 

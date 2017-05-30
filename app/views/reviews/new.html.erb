@@ -1,7 +1,7 @@
 <!-- Form to add a new review -->
-<%= simple_form_for [article, review] do |f| %>
+<%= simple_form_for [@article, @review] do |f| %>
   <div id="error_explanation">
-      <ul><% review.errors.full_messages.each do |message| %>
+      <ul><% @review.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %></ul>
   </div>
@@ -11,4 +11,3 @@
   <%= f.submit %>
 <% end %>
 
-<!-- Submit button class to be added -->

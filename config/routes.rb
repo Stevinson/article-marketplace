@@ -7,8 +7,9 @@ devise_for :users
   get "/about", to: 'pages#about'
 
   resources :users, only: [:new, :create, :edit, :update, :show] do
-    resources :bookings, only: [:index, :show]
+    resources :bookings, only: [:index]
   end
+
 
   # Separate index page to display all the articles of an author (user)
   namespace :admin do
@@ -17,5 +18,7 @@ devise_for :users
 
   resources :articles do
     resources :reviews, only: [:new, :create]
+
+    resources :bookings, only: [:show, :new, :create]
   end
 end

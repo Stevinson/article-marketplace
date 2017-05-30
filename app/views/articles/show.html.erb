@@ -9,6 +9,7 @@
 
       <!-- Show URL/content only if accessible, i.e. owned or booked -->
 
+      # Create an array of all the articles that a user has access to (both those they wrote and bought)
       <% accessible_articles = current_user.articles + current_user.today_booked_articles %>
 
       <% if accessible_articles.include? @article %>

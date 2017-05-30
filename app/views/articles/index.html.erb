@@ -6,6 +6,7 @@
     </div>
   </div>
 
+  <!-- Link to add a new article -->
   <div class="row">
     <div class="col-xs-3 col-xs-offset-9">
       <%= link_to "Share new article", new_article_path %>
@@ -21,8 +22,8 @@
           <div class="card">
             <h3><%= article.title.capitalize %></h3>
 
-            <!-- Author and date added -->
-            <h4><em>By <%= "#{article.user.first_name} #{article.user.last_name.first}." %></em></h4>
+            <!-- Author (name shown if provided at signup) and date added -->
+            <h4><em>By <%= "#{article.user.first_name} #{article.user.last_name[0]}." if (article.user.first_name && article.user.first_name) %></em></h4>
             <p><em>Posted on <%= article.created_at.to_date %></em></p>
 
             <!-- Average review -->

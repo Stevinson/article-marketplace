@@ -20,10 +20,11 @@
 
 /* Banner search form */
 .banner-wagon-search {
-  flex: 0 1 300px;
-  display: flex;
-  justify-content: flex-start;
-  padding: 0 10px;
+  // flex: 0 1 300px;
+  // display: flex;
+  // justify-content: flex-start;
+  width: 300px;
+  padding: 0;
   position: relative;
 }
 .banner-wagon-search-btn {
@@ -32,12 +33,13 @@
   border: none;
   background: transparent;
   position: absolute;
-  right: 14px;
+  right: 10px;
   top: -2px;
   z-index: 1;
 }
 .banner-wagon-search-input {
-  flex: 0 1 300px;
+  // flex: 0 1 300px;
+  width: 300px;
   transition: all 0.15s ease;
   line-height: 40px;
   font-weight: lighter;
@@ -49,5 +51,6 @@
   outline: none;
 }
 .banner-wagon-search-input:focus  {
-  border: 1px solid #CCCCCC;
+  // border: 1px solid #CCCCCC;
+  border: 1px solid rgba(255, 79, 56, 0.6);
 }

@@ -1,8 +1,9 @@
-# Controller that implements the logic for the bookings of the articles. Articles are booked 
+# Controller that implements the logic for the bookings of the articles. Articles are booked
 # for a particular time frame and charged by a day rate.
 class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
+    @user = current_user
   end
 
   def show
@@ -15,7 +16,9 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    # Assign the booking to the current user
     @booking.user = current_user
+    # Assign the booking the article that was selected
     @booking.article = Article.find(params[:article_id])
     # If the booking is valid it will save to the db, otherwise retain info inputted
     if @booking.save

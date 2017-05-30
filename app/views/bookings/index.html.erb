@@ -1,2 +1,99 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>All articles accessible for <%= @user.name %></h2>
+    </div>
+  </div>
+
+  <br>
+
+  <!-- Add tabs showing active / expired / upcoming bookings -->
+  <% active_bookings = @user.bookings.select { |booking| booking.start_date < Date.today && booking.end_date > Date.today } %>
+  <% expired_bookings = @user.bookings.select { |booking| booking.end_date < Date.today } %>
+  <% upcoming_bookings = @user.bookings.select { |booking| booking.start_date > Date.today } %>
+
+  <!-- Active bookings -->
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Active articles</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <% active_bookings.each do |booking| %>
+
+    <!-- One card per booking linking to the article page -->
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <%= link_to article_path(booking.article) do %>
+
+      <div class="card">
+        <h3><%= booking.article.name %></h3>
+        <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
+        <p>£<%= booking.price %></p>
+      </div>
+
+    <% end %>
+    </div>
+
+    <% end %>
+  </div>
+  <hr>
+
+   <!-- Upcoming bookings -->
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Upcoming articles</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <% upcoming_bookings.each do |booking| %>
+
+    <!-- One card per booking linking to the article page -->
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <%= link_to article_path(booking.article) do %>
+
+      <div class="card">
+        <h3><%= booking.article.name %></h3>
+        <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
+        <p>£<%= booking.price %></p>
+      </div>
+
+    <% end %>
+    </div>
+
+    <% end %>
+  </div>
+  <hr>
+
+  <!-- Expired bookings -->
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Expired articles</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <% expired_bookings.each do |booking| %>
+
+    <!-- One card per booking linking to the article page -->
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <%= link_to article_path(booking.article) do %>
+
+      <div class="card">
+        <h3><%= booking.article.name %></h3>
+        <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
+        <p>£<%= booking.price %></p>
+      </div>
+
+    <% end %>
+    </div>
+
+    <% end %>
+  </div>
+
+</div>

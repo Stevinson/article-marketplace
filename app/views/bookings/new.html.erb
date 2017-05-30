@@ -1,2 +1,24 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
+<%= form_for @booking do |f| %>
+
+  <%= f.label :start_date %>
+  <input type="text" id="datepicker" name="booking.start_date">
+
+  <%= f.label :end_date %>
+  <input type="text" id="datepicker" name="booking.end_date">
+
+  <hr>
+
+  <!-- Pricing information -->
+
+  <% booking_days = booking.end_date - booking.start_date %>
+  <p>Access days: <%= booking_days %></p>
+  <p>Price per day: £ <%= article.price %></p>
+
+  <hr>
+
+  <% total_price = booking_days * article.price %>
+  <p><strong>Total price: £ <%= total_price %></strong></p>
+  <% f.hidden_field :price, value: total_price %>
+
+  <%= f.submit %>
+<% end %>

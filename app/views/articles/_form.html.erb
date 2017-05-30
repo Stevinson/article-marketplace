@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= form_for @article do |f| %>
+        <%= f.label :title, "Title" %>
+        <%= f.text_field :title %>
+
+        <%= f.label :summary, "Summary" %>
+        <%= f.text_area :summary %>
+
+        <%= f.label :content, "Content" %>
+        <%= f.text_area :content %>
+
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

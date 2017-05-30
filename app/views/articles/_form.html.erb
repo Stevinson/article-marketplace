@@ -8,8 +8,11 @@
         <%= f.label :summary, "Summary" %>
         <%= f.text_area :summary %>
 
-        <%= f.label :content, "Content" %>
-        <%= f.text_area :content %>
+        <%= f.label :url, "URL" %>
+        <%= f.text_area :url %>
+
+        <%= f.label :price, "Price per day" %>
+        <%= f.text_field :price %>
 
         <%= f.submit %>
       <% end %>

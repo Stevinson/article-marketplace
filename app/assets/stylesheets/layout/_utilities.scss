@@ -9,6 +9,10 @@
   padding-top: 5em;
   padding-bottom: 5em;
 }
+.padded-text {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
 
 // Backgrounds
 .bg-black {
@@ -27,3 +31,21 @@
 body {
   margin-top: $navbar-height;
 }
+
+// Set a minimum height for each body so that the footer always appears at the base of a page
+.body-container {
+  min-height: calc(100vh - $navbar-height - $footer-height);
+}
+
+// General classes for text
+.italic {
+  font-style: italic;
+}
+.txt-para {
+  font-weight: lighter;
+}
+.header {
+  margin-bottom: 20px;
+}
+
+

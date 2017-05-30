@@ -11,6 +11,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # today_booked_articles are all the articles that a user has current access to
   def today_booked_articles
     booked_articles.where("bookings.start_date <= :date AND bookings.end_date >= :date", date: Date.today)
   end

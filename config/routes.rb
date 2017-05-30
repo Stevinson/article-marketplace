@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     resources :bookings, only: [:index]
   end
 
-
   # Separate index page to display all the articles of an author (user)
   namespace :admin do
     resources :articles, only: [:index]

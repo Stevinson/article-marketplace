@@ -23,7 +23,7 @@
       <!-- Link to Articles owned by the user -->
       <a href="" class="navbar-wagon-item navbar-wagon-link">Articles</a>
 
-      <!-- Link to Articles the user has booked previously -->
+      <!-- Link to Articles the user has booked -->
       <a href="" class="navbar-wagon-item navbar-wagon-link">Bookings</a>
 
       <!-- Link to our Help page -->
@@ -36,11 +36,7 @@
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li><a href="#">Profile</a></li>
             <li><a href="#">Dashboard</a></li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
+            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
           </ul>
         </div>
       </div>

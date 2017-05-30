@@ -7,6 +7,13 @@
   </div>
 
   <div class="row">
+    <div class="col-xs-3 col-xs-offset-9">
+      <%= link_to "Share new article", new_article_path %>
+    </div>
+  </div>
+
+
+  <div class="row">
     <% @articles.each do |article| %>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <!-- One card per booking linking to the article page -->
@@ -15,7 +22,8 @@
             <h3><%= article.title.capitalize %></h3>
 
             <!-- Author and date added -->
-            <h4>By <%= "#{article.user.first_name} #{article.user.last_name.first}." %> - created on <%= article.created_at.to_date %></h4>
+            <h4><em>By <%= "#{article.user.first_name} #{article.user.last_name.first}." %></em></h4>
+            <p><em>Posted on <%= article.created_at.to_date %></em></p>
 
             <!-- Average review -->
             <p>
@@ -37,4 +45,5 @@
       </div>
     <% end %>
   </div>
+
 </div>

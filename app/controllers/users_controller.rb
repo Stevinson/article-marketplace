@@ -1,6 +1,6 @@
 # This class overrides the devise controller to also allow other params - namely first name and last name
 class RegistrationsController < Devise::RegistrationsController
-  before_action set_user, only: [:update]
+  before_action :set_user, only: [:update]
 
   def create
     @user = User.new(user_params)
@@ -17,6 +17,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   # Whitelist and return a hash of the params required
   def user_params

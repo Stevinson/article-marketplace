@@ -5,9 +5,6 @@ class User < ApplicationRecord
   has_many :booked_articles, through: :bookings, source: :article # These are the articles that a user buys
   has_many :reviews # A user can write many reviews
 
-  # Ensure that a user has a unique username
-  validates :username, uniqueness: true
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

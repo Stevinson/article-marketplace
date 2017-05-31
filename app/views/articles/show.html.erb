@@ -46,11 +46,13 @@
     <!-- BOOKING FORM -->
     <!-- Booking information not displayed for owners, only for readers. If a reader has an active booking, booking details are displayed. Otherwise, a booking form is displayed -->
     <div class="col-xs-4">
-      <% unless @article.user == current_user %>
-        <% if current_user.today_booked_articles.include? @article %>
-          <%= render 'bookings/summary', booking: Booking.find_by(article: @article, user: current_user) %>
-        <% else %>
-          <%= render 'bookings/form' %>
+      <% if user_signed_in? %>
+        <% unless @article.user == current_user %>
+          <% if current_user.today_booked_articles.include? @article %>
+            <%= render 'bookings/summary', booking: Booking.find_by(article: @article, user: current_user) %>
+          <% else %>
+            <%= render 'bookings/form' %>
+          <% end %>
         <% end %>
       <% end %>
     </div>

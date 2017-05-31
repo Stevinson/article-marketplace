@@ -2,9 +2,10 @@
   <!-- USER INPUTS: DATES -->
   <%= f.input :start_date, as: :string, input_html: {class: "datepicker", id: "start"} %>
   <%= f.input :end_date, as: :string, input_html: {class: "datepicker", id: "end"} %>
-  <%= f.submit %>
+
   <hr>
   <p id="price_per_day">Price per day: £ <%= 0 %></p>
+  <%= f.submit %>
 <% end %>
 
 

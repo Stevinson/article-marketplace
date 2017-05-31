@@ -1,60 +1,61 @@
-<div class="container">
+<!-- View if the user is signed in. Displays a sub-section of all the articles on the site -->
+<div class="container body-container">
+  <!-- Only display articles if the user is signed in -->
   <% if user_signed_in? %>
     <div class="row">
-      <div class="col-xs-3">
-        <h2 class="card-small-title">All articles</h2>
+      <div class="col-xs-12 text-center">
+        <h2 class="header">All articles</h2>
       </div>
       <!-- Link to add a new article -->
-      <div class="col-xs-2 col-xs-offset-7 padded-top btn-main-unpolarise">
-        <%= link_to "Share new article", new_article_path %>
+      <div class="col-xs-12 text-center">
+        <%= link_to "SHARE NEW ARTICLE", new_article_path, class: "btn-main-unpolarise" %>
       </div>
     </div>
   <% end %>
-
+  <!-- Now display the articles -->
   <div class="row">
+    <!-- First ensure that there are actually some articles -->
     <% if @articles %>
       <!-- Display only if no search has been made -->
       <% if !(params[:search]) %>
-
-        <!-- Displaying one first article in a featured way -->
-        <div class="col-xs-12 col-sm-12 col-md-12">
-          <% featured = @articles.first %>
-          <!-- One card per booking linking to the article page -->
-            <div class="card-large">
-              <%= link_to article_path(featured) do %>
-                <h3 class="card-small-title"><%= featured.title.capitalize %></h3>
-              <% end %>
-              <div class="card-small-content">
-                <!-- Author (name shown if provided at signup) and date added -->
-                <h4>By <%= "#{featured.user.first_name} #{featured.user.last_name[0]}." if (featured.user.first_name && featured.user.first_name) %></h4>
-                <p>Posted on <%= featured.created_at.to_date %></p>
-
-                <!-- Average review -->
-                <p>
-                  <% average_rating = featured.reviews.reduce(0){|sum, r| sum + r.rating} / featured.reviews.length.to_f %>
-                  <% 1.upto(5) do |i| %>
-                    <% if i <= average_rating %>
-                      <i class="fa fa-star icon" aria-hidden="true"></i>
-                    <% elsif (i-1..i).include? average_rating  %>
-                      <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
-                    <% else %>
-                      <i class="fa fa-star-o icon" aria-hidden="true"></i>
-                    <% end %>
-                  <% end %>
-                  <p>(<%= featured.reviews.length %> reviews)</p>
-                </p>
-                <p><%= featured.summary %></p>
-              </div>
+        <!-- Displaying first article in a featured way -->
+        <% featured = @articles.first %>
+        <div class="card-large">
+          <!-- Display fixed image for now -->
+          <div class="card-large-image" style="background-image: linear-gradient(135deg, rgba(255,79,56,0.6) 0%, rgba(255,79,56,0.1) 50%), url(<%= image_path 'article-img-autocomplete.jpg' %>)">
+          </div>
+          <div class="card-large-content">
+            <div class="card-large-title">
+              <h2><%= featured.title.capitalize %></h2>
             </div>
+            <div class="card-large-text">
+              <!-- Author (name shown if provided at signup) and date added -->
+              <h4>By <%= "#{featured.user.first_name} #{featured.user.last_name[0]}." if (featured.user.first_name && featured.user.first_name) %></h4>
+              <!-- Creation date -->
+              <p>Posted on <%= featured.created_at.to_date %></p>
+              <!-- Average review -->
+              <p>
+                <% average_rating = featured.reviews.reduce(0){|sum, r| sum + r.rating} / featured.reviews.length.to_f %>
+                <% 1.upto(5) do |i| %>
+                  <% if i <= average_rating %>
+                    <i class="fa fa-star icon" aria-hidden="true"></i>
+                  <% elsif (i-1..i).include? average_rating  %>
+                    <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
+                  <% else %>
+                    <i class="fa fa-star-o icon" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+                <p>(<%= featured.reviews.length %> reviews)</p>
+              </p>
+              <!-- Summary of the article -->
+              <p><%= featured.summary %></p>
+            </div>
+          </div>
         </div>
-
       <% end %>
-
       <!-- Displaying all the other articles in smaller cards -->
-
-
       <% @articles.each do |article| %>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <!-- One card per booking linking to the article page -->
           <%= link_to article_path(article) do %>
             <div class="card-small">

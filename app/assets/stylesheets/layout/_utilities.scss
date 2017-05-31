@@ -48,7 +48,7 @@ body {
 
 // Set a minimum height for each body so that the footer always appears at the base of a page
 .body-container {
-  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height} );
   // padding-top: $navbar-height;
 }
 

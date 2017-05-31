@@ -25,9 +25,9 @@
           <div class="card-large-image" style="background-image: linear-gradient(135deg, rgba(255,79,56,0.6) 0%, rgba(255,79,56,0.1) 50%), url(<%= image_path 'article-img-autocomplete.jpg' %>)">
           </div>
           <div class="card-large-content">
-            <div class="card-large-title">
-              <h2><%= featured.title.capitalize %></h2>
-            </div>
+            <%= link_to article_path(featured) do %>
+              <h2 class="card-large-title"><%= featured.title.capitalize %></h2>
+            <% end %>
             <div class="card-large-text">
               <!-- Author (name shown if provided at signup) and date added -->
               <h4>By <%= "#{featured.user.first_name} #{featured.user.last_name[0]}." if (featured.user.first_name && featured.user.first_name) %></h4>

@@ -19,6 +19,9 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'valid_url'
 
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'

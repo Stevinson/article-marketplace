@@ -12,11 +12,16 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
-    <div class="notice"><%= notice %></div>
-    <div class="alert"><%= alert %></div>
+    <% if notice %>
+      <div class="notice alert alert-info"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-warning"><%= alert %></div>
+    <% end %>
     <%= render "shared/navbar" %>
     <%= yield %>
     <%= render "shared/footer" %>
     <%= javascript_include_tag 'application' %>
+    <%= yield(:after_js) %>
   </body>
 </html>

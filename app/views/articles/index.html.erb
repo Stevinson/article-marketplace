@@ -16,7 +16,7 @@
 
       <!-- Displaying one first article in a featured way -->
       <div class="col-xs-12 col-sm-12 col-md-12">
-        <% featured = @articles.find(2) %>
+        <% featured = @articles.first %>
         <!-- One card per booking linking to the article page -->
         <%= link_to article_path(featured) do %>
           <div class="card-large">

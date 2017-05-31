@@ -4,6 +4,11 @@
  * Feel free to change them and create your own
  * ------------------------------------- */
 
+// Kill the text decoration of all the links on the page
+a:hover {
+  text-decoration: none;
+}
+
 // Paddings
 .padded {
   padding-top: 5em;
@@ -40,6 +45,7 @@ body {
 // Set a minimum height for each body so that the footer always appears at the base of a page
 .body-container {
   min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+  // padding-top: $navbar-height;
 }
 
 // General classes for text
@@ -51,6 +57,8 @@ body {
 }
 .header {
   margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 36px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
-
-

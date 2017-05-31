@@ -1,0 +1,30 @@
+// CSS for the smaller cards
+.card-small {
+  padding: 0 5px;
+  position: relative;
+}
+.card-small-title {
+  font-weight: bold;
+  color: black;
+  &:hover {
+    color: $unpolarise-orange;
+  }
+}
+.card-small-content {
+  font-weight: lighter;
+  color: $unpolarise-dark-grey;
+}
+
+// CSS for the larger cards
+
+
+// CSS for both cards
+
+.icon {
+  color: $unpolarise-orange;
+}
+// This is the container that holds the cards for a page
+.cards {
+  margin-top: 40px;
+}
+

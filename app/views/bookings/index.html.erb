@@ -9,7 +9,7 @@
   <br>
 
   <!-- 3 tabs for active / past / upcoming bookings -->
-  <% active_bookings = @user.bookings.select { |booking| booking.start_date < Date.today && booking.end_date > Date.today } %>
+  <% active_bookings = @user.bookings.select { |booking| booking.start_date <= Date.today && booking.end_date >= Date.today } %>
   <% past_bookings = @user.bookings.select { |booking| booking.end_date < Date.today } %>
   <% upcoming_bookings = @user.bookings.select { |booking| booking.start_date > Date.today } %>
 

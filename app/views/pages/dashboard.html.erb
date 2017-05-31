@@ -1,18 +1,17 @@
+<!-- Page that displays all of a user's articles -->
+
+
+
 <div class="container">
 
-  <div class="row">
+  <%= link_to "Share new article", new_article_path, class: "btn-main-unpolarise text-center" %>
+
+  <!-- Title -->
+  <div class="row text-center">
     <div class="col-xs-12">
-      <h2>Your own articles</h2>
+      <h2>Your Articles</h2>
     </div>
   </div>
-
-  <!-- Link to add a new article -->
-  <div class="row">
-    <div class="col-xs-3 col-xs-offset-9">
-      <%= link_to "Share new article", new_article_path %>
-    </div>
-  </div>
-
 
   <div class="row">
     <% @user.articles.each do |article| %>

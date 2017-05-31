@@ -16,43 +16,44 @@
   <div class="row">
     <!-- First ensure that there are actually some articles -->
     <% if @articles %>
-      <!-- Displaying first article in a featured way -->
-      <% featured = @articles.first %>
-      <div class="card-large">
-        <!-- Display fixed image for now -->
-        <div class="card-large-image" style="background-image: linear-gradient(135deg, rgba(255,79,56,0.6) 0%, rgba(255,79,56,0.1) 50%), url(<%= image_path 'article-img-autocomplete.jpg' %>)">
-        </div>
-        <div class="card-large-content">
-          <div class="card-large-title">
-            <h2><%= featured.title.capitalize %></h2>
+      <!-- Display only if no search has been made -->
+      <% if !(params[:search]) %>
+        <!-- Displaying first article in a featured way -->
+        <% featured = @articles.first %>
+        <div class="card-large">
+          <!-- Display fixed image for now -->
+          <div class="card-large-image" style="background-image: linear-gradient(135deg, rgba(255,79,56,0.6) 0%, rgba(255,79,56,0.1) 50%), url(<%= image_path 'article-img-autocomplete.jpg' %>)">
           </div>
-          <div class="card-large-text">
-            <!-- Author (name shown if provided at signup) and date added -->
-            <h4>By <%= "#{featured.user.first_name} #{featured.user.last_name[0]}." if (featured.user.first_name && featured.user.first_name) %></h4>
-            <!-- Creation date -->
-            <p>Posted on <%= featured.created_at.to_date %></p>
-            <!-- Average review -->
-            <p>
-              <% average_rating = featured.reviews.reduce(0){|sum, r| sum + r.rating} / featured.reviews.length.to_f %>
-              <% 1.upto(5) do |i| %>
-                <% if i <= average_rating %>
-                  <i class="fa fa-star icon" aria-hidden="true"></i>
-                <% elsif (i-1..i).include? average_rating  %>
-                  <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
-                <% else %>
-                  <i class="fa fa-star-o icon" aria-hidden="true"></i>
+          <div class="card-large-content">
+            <div class="card-large-title">
+              <h2><%= featured.title.capitalize %></h2>
+            </div>
+            <div class="card-large-text">
+              <!-- Author (name shown if provided at signup) and date added -->
+              <h4>By <%= "#{featured.user.first_name} #{featured.user.last_name[0]}." if (featured.user.first_name && featured.user.first_name) %></h4>
+              <!-- Creation date -->
+              <p>Posted on <%= featured.created_at.to_date %></p>
+              <!-- Average review -->
+              <p>
+                <% average_rating = featured.reviews.reduce(0){|sum, r| sum + r.rating} / featured.reviews.length.to_f %>
+                <% 1.upto(5) do |i| %>
+                  <% if i <= average_rating %>
+                    <i class="fa fa-star icon" aria-hidden="true"></i>
+                  <% elsif (i-1..i).include? average_rating  %>
+                    <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
+                  <% else %>
+                    <i class="fa fa-star-o icon" aria-hidden="true"></i>
+                  <% end %>
                 <% end %>
-              <% end %>
-              <p>(<%= featured.reviews.length %> reviews)</p>
-            </p>
-            <!-- Summary of the article -->
-            <p><%= featured.summary %></p>
+                <p>(<%= featured.reviews.length %> reviews)</p>
+              </p>
+              <!-- Summary of the article -->
+              <p><%= featured.summary %></p>
+            </div>
           </div>
         </div>
-      </div>
-
+      <% end %>
       <!-- Displaying all the other articles in smaller cards -->
-
       <% @articles.each do |article| %>
         <div class="col-xs-12 col-sm-6 col-md-4">
           <!-- One card per booking linking to the article page -->
@@ -87,5 +88,4 @@
       <% end %>
     <% end %>
   </div>
-
 </div>

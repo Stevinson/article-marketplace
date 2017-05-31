@@ -1,18 +1,15 @@
 <div class="container">
-
-  <div class="row">
-    <div class="col-xs-12">
-      <h2>All articles</h2>
+  <% if user_signed_in? %>
+    <div class="row">
+      <div class="col-xs-3">
+        <h2 class="card-small-title">All articles</h2>
+      </div>
+      <!-- Link to add a new article -->
+      <div class="col-xs-2 col-xs-offset-6 padded-top btn-main-unpolarise">
+        <%= link_to "Share new article", new_article_path %>
+      </div>
     </div>
-  </div>
-
-  <!-- Link to add a new article -->
-  <div class="row">
-    <div class="col-xs-3 col-xs-offset-9">
-      <%= link_to "Share new article", new_article_path %>
-    </div>
-  </div>
-
+  <% end %>
 
   <div class="row">
     <% if @articles %>
@@ -23,27 +20,28 @@
         <!-- One card per booking linking to the article page -->
         <%= link_to article_path(featured) do %>
           <div class="card-large">
-            <h3><%= featured.title.capitalize %></h3>
+            <h3 class="card-small-title"><%= featured.title.capitalize %></h3>
+            <div class="card-small-content">
+              <!-- Author (name shown if provided at signup) and date added -->
+              <h4>By <%= "#{featured.user.first_name} #{featured.user.last_name[0]}." if (featured.user.first_name && featured.user.first_name) %></h4>
+              <p>Posted on <%= featured.created_at.to_date %></p>
 
-            <!-- Author (name shown if provided at signup) and date added -->
-            <h4><em>By <%= "#{featured.user.first_name} #{featured.user.last_name[0]}." if (featured.user.first_name && featured.user.first_name) %></em></h4>
-            <p><em>Posted on <%= featured.created_at.to_date %></em></p>
-
-            <!-- Average review -->
-            <p>
-              <% average_rating = featured.reviews.reduce(0){|sum, r| sum + r.rating} / featured.reviews.length.to_f %>
-              <% 1.upto(5) do |i| %>
-                <% if i <= average_rating %>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                <% elsif (i-1..i).include? average_rating  %>
-                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                <% else %>
-                  <i class="fa fa-star-o" aria-hidden="true"></i>
+              <!-- Average review -->
+              <p>
+                <% average_rating = featured.reviews.reduce(0){|sum, r| sum + r.rating} / featured.reviews.length.to_f %>
+                <% 1.upto(5) do |i| %>
+                  <% if i <= average_rating %>
+                    <i class="fa fa-star icon" aria-hidden="true"></i>
+                  <% elsif (i-1..i).include? average_rating  %>
+                    <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
+                  <% else %>
+                    <i class="fa fa-star-o icon" aria-hidden="true"></i>
+                  <% end %>
                 <% end %>
-              <% end %>
-              <p><em>(<%= featured.reviews.length %> reviews)</em></p>
-            </p>
-            <p><em><%= featured.summary %></em></p>
+                <p>(<%= featured.reviews.length %> reviews)</p>
+              </p>
+              <p><%= featured.summary %></p>
+            </div>
           </div>
         <% end %>
       </div>
@@ -55,27 +53,29 @@
           <!-- One card per booking linking to the article page -->
           <%= link_to article_path(article) do %>
             <div class="card-small">
-              <h3><%= article.title.capitalize %></h3>
+              <h3 class="card-small-title"><%= article.title.capitalize %></h3>
 
-            <!-- Author (name shown if provided at signup) and date added -->
-            <h4><em>By <%= "#{article.user.first_name} #{article.user.last_name[0]}." if (article.user.first_name && article.user.first_name) %></em></h4>
-            <p><em>Posted on <%= article.created_at.to_date %></em></p>
+              <div class="card-small-content">
+                <!-- Author (name shown if provided at signup) and date added -->
+                <h4>By <%= "#{article.user.first_name} #{article.user.last_name[0]}." if (article.user.first_name && article.user.first_name) %></h4>
+                <p>Posted on <%= article.created_at.to_date %></p>
 
-              <!-- Average review -->
-              <p>
-                <% average_rating = article.reviews.reduce(0){|sum, r| sum + r.rating} / article.reviews.length.to_f %>
-                <% 1.upto(5) do |i| %>
-                  <% if i <= average_rating %>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  <% elsif (i-1..i).include? average_rating  %>
-                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                  <% else %>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                 <% end %>
-                <% end %>
-                <p><em>(<%= article.reviews.length %> reviews)</em></p>
-              </p>
-              <p><em><%= article.summary %></em></p>
+                <!-- Average review -->
+                <p>
+                  <% average_rating = article.reviews.reduce(0){|sum, r| sum + r.rating} / article.reviews.length.to_f %>
+                  <% 1.upto(5) do |i| %>
+                    <% if i <= average_rating %>
+                      <i class="fa fa-star icon" aria-hidden="true"></i>
+                    <% elsif (i-1..i).include? average_rating  %>
+                      <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
+                    <% else %>
+                      <i class="fa fa-star-o icon" aria-hidden="true"></i>
+                   <% end %>
+                  <% end %>
+                  <p>(<%= article.reviews.length %> reviews)</p>
+                </p>
+                <p><%= article.summary %></p>
+              </div>
             </div>
           <% end %>
         </div>

@@ -7,11 +7,9 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = Booking.find(params[:id])
   end
 
   def new
-    @booking = Booking.new
   end
 
   def create
@@ -20,9 +18,12 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     # Assign the booking the article that was selected
     @booking.article = Article.find(params[:article_id])
-    # If the booking is valid it will save to the db, otherwise retain info inputted
+    # Calculate price
+    @booking.price = price_calc(@booking.start_date, @booking.end_date, @booking.article.price)
+    # Booking saved to db if valid, otherwise inputs are saved in the view
     if @booking.save
-      redirect_to user_path(@booking.article)
+      flash[:success] = "You have booked access to the article!"
+      redirect_to article_path(@booking.article)
     else
       render :new
     end
@@ -33,5 +34,10 @@ class BookingsController < ApplicationController
   # Whitelist and return a hash of the params required
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :price)
+  end
+
+  def price_calc(start_date, end_date, price_per_day)
+    price_per_day ||= 0
+    return (end_date - start_date).to_i * price_per_day
   end
 end

@@ -8,9 +8,17 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "vendor/index";
-@import 'bootstrap-datetimepicker';
+
+@import "bootstrap-datepicker";
 
 // Your CSS
 @import "layout/index";
 @import "components/index";
 @import "pages/index";
+
+
+/*
+ *= require_tree .
+ *= require_self
+ *= require bootstrap-datepicker3
+ */

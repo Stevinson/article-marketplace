@@ -8,11 +8,9 @@
           <div class="banner-content">
             <h1>Remove your newsfeed bias</h1>
             <h2>Choose content that is not defined by Facebook's algorithm.</h2>
-            <form action="" class="banner-wagon-search">
-              <input type="text" class="banner-wagon-search-input" placeholder="What are you interested in?">
-              <button type="submit" class="banner-wagon-search-btn">
-                <i class="fa fa-search"></i>
-              </button>
+            <form action="/" class="banner-wagon-search form-inline">
+              <input type="text" class="banner-wagon-search-input" placeholder="What are you interested in?" name="search">
+              <button type="submit" class="btn-form-unpolarise">Search</button>
             </form>
           </div>
         </div>
@@ -22,7 +20,7 @@
 
   <!-- Display the index of articles -->
   <div class="row">
-      <%= render template: "articles/index" %>
+    <%= render template: "articles/index" %>
   </div>
 </div>
 

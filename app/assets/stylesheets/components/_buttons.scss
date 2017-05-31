@@ -2,6 +2,10 @@
 .btn-form-unpolarise {
   background-color: $unpolarise-orange-opacity-dark !important;
   border: none;
+  color: $unpolarise-off-white;
+  border-radius: 3px;
+  padding: 8px 24px;
+  margin-left: 5px;
 }
 
 // Main custom button to be used on page
@@ -11,6 +15,8 @@
   padding: 8px 24px;
   margin-top: 25px;
   margin-bottom: 25px;
+  border-radius:3px;
+  text-align: center; // centering the text in the button
   &:hover {
     color: $unpolarise-orange-opacity-dark;
     background-color: $unpolarise-orange-opacity-lightest;

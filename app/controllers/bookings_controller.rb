@@ -22,7 +22,6 @@ class BookingsController < ApplicationController
     @booking.price = price_calc(@booking.start_date, @booking.end_date, @booking.article.price)
     # Booking saved to db if valid, otherwise inputs are saved in the view
     if @booking.save
-      flash[:success] = "You have booked access to the article!"
       redirect_to article_path(@booking.article)
     else
       render :new

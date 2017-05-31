@@ -9,5 +9,10 @@
   border: 1px solid $unpolarise-orange-opacity-light;
   color: $unpolarise-orange-opacity-dark;
   padding: 8px 24px;
-  margin-top: 15px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  &:hover {
+    color: $unpolarise-orange-opacity-dark;
+    background-color: $unpolarise-orange-opacity-lightest;
+  }
 }

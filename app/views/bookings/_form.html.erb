@@ -4,27 +4,6 @@
   <%= f.input :end_date, as: :string, input_html: {class: "datepicker", id: "end"} %>
 
   <hr>
-  <p id="price_per_day">Price per day: £ <%= 0 %></p>
+  <p id="price_per_day">Price per day: £ <%= @article.price %></p>
   <%= f.submit %>
 <% end %>
-
-
-
-<!-- ANIMATION -->
-<%# content_for(:after_js) do %>
-  <%# javascript_tag do %>
-
-  <!-- $(document).ready(function() {
-
-    $('.datepicker').datepicker( {
-     onSelect: function(date) {
-
-      $('#price_per_day').prepend('<p>Access days: <%=  %></p>')
-      $('#price_per_day').append('<hr><p><strong>Total price: £ <%=  %></strong></p>
-      <br>')
-       },
-    });
-  }); -->
-
-  <%# end %>
-<%# end %>

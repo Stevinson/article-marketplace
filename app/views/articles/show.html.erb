@@ -63,9 +63,11 @@
   <!-- URL shown only to article owners and readers who currently have a booking -->
   <div class="row">
     <div class="col-xs-12">
-      <% accessible_articles = current_user.articles + current_user.today_booked_articles %>
-      <% if accessible_articles.include? @article %>
-        <%= link_to @article.url, @article.url %>
+      <% if user_signed_in? %>
+        <% accessible_articles = current_user.articles + current_user.today_booked_articles %>
+        <% if accessible_articles.include? @article %>
+          <%= link_to @article.url, @article.url %>
+        <% end %>
       <% end %>
     </div>
   </div>

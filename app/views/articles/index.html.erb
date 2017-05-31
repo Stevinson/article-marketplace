@@ -16,11 +16,45 @@
 
   <div class="row">
     <% if @articles %>
+
+      <!-- Displaying one first article in a featured way -->
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <% featured = @articles.find(2) %>
+        <!-- One card per booking linking to the article page -->
+        <%= link_to article_path(featured) do %>
+          <div class="card-large">
+            <h3><%= featured.title.capitalize %></h3>
+
+            <!-- Author (name shown if provided at signup) and date added -->
+            <h4><em>By <%= "#{featured.user.first_name} #{featured.user.last_name[0]}." if (featured.user.first_name && featured.user.first_name) %></em></h4>
+            <p><em>Posted on <%= featured.created_at.to_date %></em></p>
+
+            <!-- Average review -->
+            <p>
+              <% average_rating = featured.reviews.reduce(0){|sum, r| sum + r.rating} / featured.reviews.length.to_f %>
+              <% 1.upto(5) do |i| %>
+                <% if i <= average_rating %>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                <% elsif (i-1..i).include? average_rating  %>
+                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                <% else %>
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+              <p><em>(<%= featured.reviews.length %> reviews)</em></p>
+            </p>
+            <p><em><%= featured.summary %></em></p>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Displaying all the other articles in smaller cards -->
+
       <% @articles.each do |article| %>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
           <!-- One card per booking linking to the article page -->
           <%= link_to article_path(article) do %>
-            <div class="card">
+            <div class="card-small">
               <h3><%= article.title.capitalize %></h3>
 
             <!-- Author (name shown if provided at signup) and date added -->

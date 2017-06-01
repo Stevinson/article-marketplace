@@ -13,18 +13,19 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @article = Article.find(params[:article_id])
     @booking = Booking.new(booking_params)
     # Assign the booking to the current user
     @booking.user = current_user
     # Assign the booking the article that was selected
-    @booking.article = Article.find(params[:article_id])
+    @booking.article = @article
     # Calculate price
     @booking.price = price_calc(@booking.start_date, @booking.end_date, @booking.article.price)
     # Booking saved to db if valid, otherwise inputs are saved in the view
     if @booking.save
       redirect_to article_path(@booking.article)
     else
-      render :new
+      render "articles/show"
     end
   end
 

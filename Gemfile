@@ -35,4 +35,7 @@ end
 # Facebook oauth
 gem 'omniauth-facebook'
 
+# Cloudinary Gem
+gem 'cloudinary'
+
 

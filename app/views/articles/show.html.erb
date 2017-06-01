@@ -73,7 +73,7 @@
       <% if user_signed_in? %>
         <% accessible_articles = current_user.articles + current_user.today_booked_articles %>
         <% if accessible_articles.include? @article %>
-          <%= link_to @article.url, @article.url %>
+          <%= link_to "Read this article", @article.url %>
         <% end %>
       <% end %>
     </div>

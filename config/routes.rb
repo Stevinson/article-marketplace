@@ -20,4 +20,7 @@ Rails.application.routes.draw do
 
     resources :bookings, only: [:show, :new, :create]
   end
+
+  # Facilitates the use of Attachinary
+  mount Attachinary::Engine => "/attachinary"
 end

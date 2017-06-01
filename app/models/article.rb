@@ -3,6 +3,8 @@ class Article < ApplicationRecord
   belongs_to :user
   has_many :bookings
   has_many :reviews
+  has_many :readers, through: :bookings, source: :user
+
   # Each article is to have one image
   has_attachment :photo
   # Validations on an article's attributes

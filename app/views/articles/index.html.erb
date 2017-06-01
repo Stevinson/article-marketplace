@@ -86,8 +86,7 @@
                 </div>
               </div>
               <!-- Display fixed image for now -->
-              <div class="card-large-image" style="background-image: linear-gradient(135deg, rgba(255,79,56,0.6) 0%, rgba(255,79,56,0.1) 50%), url(<%= image_path 'article-img-autocomplete.jpg' %>)">
-              </div>
+              <div class="card-large-image" style="background-image: url('<%= cl_image_path article.photo.path %>') "></div>
             </div>
           </div>
         <!-- For the rest of the articles display them with a small card -->

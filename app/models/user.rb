@@ -1,9 +1,9 @@
 # A class which holds all the login for each user that uses the website
 class User < ApplicationRecord
-  has_many :articles # A user can posess many articles
-  has_many :bookings # A user can create many bookings
+  has_many :articles, dependent: :destroy # A user can posess many articles
+  has_many :bookings, dependent: :destroy # A user can create many bookings
   has_many :booked_articles, through: :bookings, source: :article # These are the articles that a user buys
-  has_many :reviews # A user can write many reviews
+  has_many :reviews, dependent: :destroy # A user can write many reviews
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

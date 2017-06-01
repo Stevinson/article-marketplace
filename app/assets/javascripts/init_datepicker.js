@@ -1,6 +1,6 @@
 $(function() {
   $( ".datepicker" ).datepicker({
-    format: "dd-mm-yyyy",
+    format: "mm-dd-yyyy",
     startDate: new Date(),
     autoclose: true
   });

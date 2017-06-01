@@ -5,17 +5,19 @@
 
   <hr>
   <p id="price_per_day">Price per day: £ <%= @article.price %></p>
-  <%= f.submit %>
+  <%= f.submit class: "btn-form-unpolarise" %>
 <% end %>
 
 <!-- ANIMATION -->
 <% content_for(:after_js) do %>
   <script>
     $(document).ready(function() {
+
+
       $(".datepicker").on("change", function() {
-        var start = $('#start').val();
-        var end = $('#end').val();
-        var price = (<% @article.price %>);
+        var start = Date.parse($('#start').val());
+        var end = Date.parse($('#end').val());
+        var price = <%= @article.price %>;
 
         if ( start && end && end > start ) {
           var days = Math.round((end - start) / (1000 * 60 * 60 * 24));

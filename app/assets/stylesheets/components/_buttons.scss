@@ -21,6 +21,9 @@
     color: $unpolarise-orange-opacity-dark;
     background-color: $unpolarise-orange-opacity-lightest;
   }
+  &:active {
+    color: $unpolarise-orange-opacity-dark;
+  }
   a {
     color: $unpolarise-orange-opacity-dark;
   }

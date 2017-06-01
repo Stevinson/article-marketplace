@@ -15,7 +15,7 @@
 
 
       $(".datepicker").on("change", function() {
-        $('#price_per_day').empty();
+
         var start = Date.parse($('#start').val());
         var end = Date.parse($('#end').val());
         var price = <%= @article.price %>;

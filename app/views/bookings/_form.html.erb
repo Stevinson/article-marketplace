@@ -1,11 +1,14 @@
-<%= simple_form_for [@article, @booking] do |f| %>
+<%= simple_form_for [article, booking] do |f| %>
+
   <!-- USER INPUTS: DATES -->
-  <%= f.input :start_date, as: :string, input_html: {class: "datepicker", id: "start"} %>
-  <%= f.input :end_date, as: :string, input_html: {class: "datepicker", id: "end"} %>
+  <%= f.input :start_date, required: true, as: :string, input_html: {class: "datepicker", id: "start"} %>
+  <%= f.input :end_date, required: true, as: :string, input_html: {class: "datepicker", id: "end"} %>
 
   <hr>
-  <p id="price_per_day">Price per day: £ <%= @article.price %></p>
-  <%= f.submit class: "btn-form-unpolarise" %>
+  <div id="total_days"></div>
+  <p id="price_per_day">Price per day: £ <%= article.price %></p>
+  <div id="total_price"></div>
+  <%= f.submit class: "btn-form-unpolarise", id: "submit-booking" %>
 <% end %>
 
 <!-- ANIMATION -->
@@ -13,23 +16,59 @@
   <script>
     $(document).ready(function() {
 
-
       $(".datepicker").on("change", function() {
-        $('#price_per_day').empty();
-        var start = Date.parse($('#start').val());
-        var end = Date.parse($('#end').val());
-        var price = <%= @article.price %>;
+        // Clear previous price information displayed in case the user selects new dates
+        $('#total_days').empty();
+        $('#total_price').empty();
+        // Calculate price information
+        var s = $("#start").val().split("-");
+        var start = new Date(s[2], s[1] - 1, s[0]);
+        var e = $("#end").val().split("-");
+        var end = new Date(e[2], e[1] - 1, e[0]);
+        var price = <%= article.price || 0 %>;
 
+        // Check if inputs are valid
         if ( start && end && end > start ) {
+          // If valid inputs: display price information
           var days = Math.round((end - start) / (1000 * 60 * 60 * 24));
           var total = days * price;
-          var display_days = "<p><strong>Total days: " + days + "</strong></p>";
+          var display_days = "<p>Total days: " + days + "</p>";
           var display_price = "<hr><p><strong>Total price: £ " + total + "</strong></p>";
-          $('#price_per_day').prepend(display_days);
-          $('#price_per_day').append(display_price);
+          $('#total_days').append(display_days);
+          $('#total_price').append(display_price);
+          $('#submit-booking').attr('disabled', false);
+        // } else {
+          // If invalid inputs, submit not allowed
+          // $('form').on("submit", function(e) {
+          //   e.preventDefault();
+          // });
         };
+      });
 
-      })
+      $('#submit-booking').on("click", function(e) {
+          if ($('#start').val() === '') {
+            e.preventDefault();
+            shake($("#start"));
+          };
+          if ($('#end').val() === '') {
+            e.preventDefault();
+            shake($("#end"));
+          };
+      });
+
+      function shake(div){
+      var interval = 100;
+      var distance = 5;
+      var times = 3;
+      $(div).css('position','relative');
+      for(var iter=0;iter<(times+1);iter++){
+          $(div).animate({
+              left:((iter%2==0 ? distance : distance*-1))
+              },interval);
+        };
+        $(div).animate({ left: 0},interval);
+      };
+
     });
   </script>
 <% end %>

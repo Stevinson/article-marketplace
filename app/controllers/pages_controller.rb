@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def home
     # if there's a search happening, @articles is just the articles that correspond to the search, if not @articles is all the articles within the index
     if params[:search]
-      @articles = Article.where('title LIKE ?', "%#{params[:search]}%")
+      @articles = Article.where('title iLIKE ?', "%#{params[:search]}%")
       # if there's no articles that correspond to the search query, then @articles is all the articles of the index
       if !@articles.any?
         @articles = Article.all # So that our home page knows what @articles is - to be able to render the index template
@@ -20,3 +20,4 @@ class PagesController < ApplicationController
     @user = current_user
   end
 end
+

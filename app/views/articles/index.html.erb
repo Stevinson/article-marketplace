@@ -57,33 +57,32 @@
       <% @articles.each do |article| %>
         <div class="col-xs-12 col-sm-6 col-md-4">
           <!-- One card per booking linking to the article page -->
-          <%= link_to article_path(article) do %>
-            <div class="card-small">
+          <div class="card-small">
+            <%= link_to article_path(article) do %>
               <h3 class="card-small-title"><%= article.title.capitalize %></h3>
+            <% end %>
+            <div class="card-small-content">
+              <!-- Author (name shown if provided at signup) and date added -->
+              <h4>By <%= "#{article.user.first_name} #{article.user.last_name[0]}." if (article.user.first_name && article.user.first_name) %></h4>
+              <p>Posted on <%= article.created_at.to_date %></p>
 
-              <div class="card-small-content">
-                <!-- Author (name shown if provided at signup) and date added -->
-                <h4>By <%= "#{article.user.first_name} #{article.user.last_name[0]}." if (article.user.first_name && article.user.first_name) %></h4>
-                <p>Posted on <%= article.created_at.to_date %></p>
-
-                <!-- Average review -->
-                <p>
-                  <% average_rating = article.reviews.reduce(0){|sum, r| sum + r.rating} / article.reviews.length.to_f %>
-                  <% 1.upto(5) do |i| %>
-                    <% if i <= average_rating %>
-                      <i class="fa fa-star icon" aria-hidden="true"></i>
-                    <% elsif (i-1..i).include? average_rating  %>
-                      <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
-                    <% else %>
-                      <i class="fa fa-star-o icon" aria-hidden="true"></i>
-                   <% end %>
-                  <% end %>
-                  <p>(<%= article.reviews.length %> reviews)</p>
-                </p>
-                <p><%= article.summary %></p>
-              </div>
+              <!-- Average review -->
+              <p>
+                <% average_rating = article.reviews.reduce(0){|sum, r| sum + r.rating} / article.reviews.length.to_f %>
+                <% 1.upto(5) do |i| %>
+                  <% if i <= average_rating %>
+                    <i class="fa fa-star icon" aria-hidden="true"></i>
+                  <% elsif (i-1..i).include? average_rating  %>
+                    <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
+                  <% else %>
+                    <i class="fa fa-star-o icon" aria-hidden="true"></i>
+                 <% end %>
+                <% end %>
+                <p>(<%= article.reviews.length %> reviews)</p>
+              </p>
+              <p><%= article.summary %></p>
             </div>
-          <% end %>
+          </div>
         </div>
       <% end %>
     <% end %>

@@ -37,5 +37,9 @@ gem 'omniauth-facebook'
 
 # Cloudinary Gem
 gem 'cloudinary'
+# Gems for Attichinary
+gem 'attachinary', github: 'assembler/attachinary'
+gem 'jquery-fileupload-rails'
+gem 'coffee-rails'
 
 

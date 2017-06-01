@@ -35,4 +35,6 @@ end
 # Facebook oauth
 gem 'omniauth-facebook'
 
+# Gem that allows us to test emails without actually sending them
+gem "letter_opener", group: :development
 

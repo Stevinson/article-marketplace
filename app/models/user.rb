@@ -1,5 +1,8 @@
 # A class which holds all the login for each user that uses the website
 class User < ApplicationRecord
+  # After a new user has been created, send them a welcome email
+  after_create :send_welcome_email
+  # Define the relations between a user and the other database tables
   has_many :articles # A user can posess many articles
   has_many :bookings # A user can create many bookings
   has_many :booked_articles, through: :bookings, source: :article # These are the articles that a user buys
@@ -37,5 +40,11 @@ class User < ApplicationRecord
     end
 
     return user
+  end
+
+  private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
   end
 end

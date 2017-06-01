@@ -1,30 +1,32 @@
-<div class="container">
+<div class="container padded-top body-container">
   <div class="row">
-    <div class="col-xs-12">
-      <%= form_for @article do |f| %>
+    <div class="col-xs-10 col-sm-6 col-xs-offset-1 col-sm-offset-3">
+      <h1 class="header text-center">Share your article</h1>
+      <div class="form-content">
+        <%= simple_form_for @article do |f| %>
 
+          <div class="form-inputs">
 
-        <div id="error_explanation">
-          <ul><% @article.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %></ul>
-        </div>
+            <%= f.input :title, required: true, autofocus: true, placeholder: "Why might you worry about echo-chambers?", label: "Title" %>
 
-        <%= f.label :title, "Title" %>
-        <%= f.text_field :title %>
+            <%= f.input :summary, required: false, autofocus: true, placeholder: "An echo-chamber is a digitally amplified phenomenon. If you were in a perfect echo-chamber you would only hear opinions and analysis that agrees with your own point of view.", label: "Sum up your article" %>
 
-        <%= f.label :summary, "Summary" %>
-        <%= f.text_area :summary %>
+            <%= f.input :url, required: true, autofocus: true, placeholder: "https://echochamber.club/problems-echo-chambers/", label: "URL of your article" %>
 
-        <%= f.label :url, "URL" %>
-        <%= f.text_area :url %>
+            <%= f.input :price, required: true, autofocus: true, placeholder: "2.0", label: "Price per day (£)" %>
+          </div>
 
-        <%= f.label :price, "Price per day" %>
-        <%= f.text_field :price %>
-
-        <%= f.submit %>
-      <% end %>
+          <div class="form-actions">
+            <%= f.button :submit, "Create your article", class: "btn-facebook btn-form btn-form-unpolarise" %>
+          </div>
+        <% end %>
+      </div>
     </div>
+
+
+
   </div>
 </div>
+
+
 

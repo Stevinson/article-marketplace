@@ -9,5 +9,5 @@
   // Show the new review with an animation!
   new_review.slideDown();
   // Reset the form
-  $('#new_review').html("<%= j render 'reviews/form', restaurant: @restaurant, review: Review.new %>");
+  $('#new_review').html("<%= j render 'reviews/form', article: @article, review: Review.new %>");
 <% end %>

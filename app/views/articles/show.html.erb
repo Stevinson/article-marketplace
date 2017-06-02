@@ -102,18 +102,14 @@
 
     <!-- Only readers who purchased access to articles can write reviews. Article owners and other users cannot add a review. -->
 
-    <% if user_signed_in? && (current_user.today_booked_articles.include? @article) %>
-      <div class="row">
-        <div class="col-xs-3">
+    <div class="row">
+      <div class="col-xs-12">
+        <% if user_signed_in? && (current_user.today_booked_articles.include? @article) %>
           <h4>Leave a review</h4>
-          <div id="new_review"><%= render "reviews/form", article: @article, review: @review %></div>
+          <div id="new_review"><%= render 'reviews/form', article: @article, review: @review %></div>
         <% end %>
-
       </div>
-      <div class="row">
-        <%= render 'reviews/form', article: @article, review: @review %>
-      </div>
-    <% end %>
+    </div>
 
 
   </div>

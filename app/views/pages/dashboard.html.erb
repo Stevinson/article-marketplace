@@ -3,11 +3,14 @@
 
   <!-- CALL TO ACTION -->
   <!-- Button to add a new article to the site -->
+  <br>
+  <br>
   <div class="row text-center">
     <div class="col-xs-12">
       <%= link_to "SHARE NEW ARTICLE", new_article_path, class: "btn-main-unpolarise text-center" %>
     </div>
   </div>
+  <br>
 
   <!-- DASHBOARD -->
   <% if @user.articles %> <!-- Author has articles? -->
@@ -47,28 +50,28 @@
       <% if @user.readings.length == 1 %> <!-- only 1 reader -->
         <div class="row">
           <div class="col-xs-12 text-center">
-            <!-- <p><%=# "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0].}" %></p> -->
+            <%= "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0]}." %>
           </div>
         </div>
       <% elsif @user.readings.length == 2 %> <!-- only 2 readers -->
         <div class="row">
           <div class="col-xs-12 col-sm-6 text-center">
-            <!-- <p><%=# "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0].}" %></p> -->
+            <%= "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0]}." %>
           </div>
           <div class="col-xs-12 col-sm-6 text-center">
-            <!-- <p><%=# "#{@user.top_readers[1].first_name} #{@user.top_readers[1].last_name[1].}" %></p> -->
+            <%= "#{@user.top_readers[1].first_name} #{@user.top_readers[1].last_name[0]}." %>
           </div>
         </div>
       <% else %> <!-- 3 or more readers -->
         <div class="row">
           <div class="col-xs-12 col-sm-4 text-center">
-            <!-- <p><%=# "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0].}" %></p> -->
+            <%= "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0]}." %>
           </div>
           <div class="col-xs-12 col-sm-4 text-center">
-            <!-- <p><%=# "#{@user.top_readers[1].first_name} #{@user.top_readers[1].last_name[1].}" %></p> -->
+            <%= "#{@user.top_readers[1].first_name} #{@user.top_readers[1].last_name[0]}." %>
           </div>
           <div class="col-xs-12 col-sm-4 text-center">
-            <!-- <p><%=# "#{@user.top_readers[2].first_name} #{@user.top_readers[2].last_name[2].}" %></p> -->
+            <%= "#{@user.top_readers[2].first_name} #{@user.top_readers[2].last_name[0]}." %>
           </div>
         </div>
       <% end %>

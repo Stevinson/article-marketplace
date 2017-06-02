@@ -26,12 +26,14 @@ class RegistrationsController < Devise::RegistrationsController
     hash.sort_by { |key, value| value }
     if readers.length > 1
       top_one = hash.keys.last
-    elsif readers.length > 2
-      hash.delete(top_one)
-      top_two = hash.keys.last
-    else
-      hash.delete(top_two)
-      top_three = hash.keys.last
+      if readers.length > 2
+        hash.delete(top_one)
+        top_two = hash.keys.last
+        if readers.length > 3
+          hash.delete(top_two)
+          top_three = hash.keys.last
+        end
+      end
     end
     return [top_one, top_two, top_three]
  end

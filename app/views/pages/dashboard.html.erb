@@ -80,7 +80,7 @@
   <% end %>
   <br>
 
-  <% if @user.articles.length >= 1 %> <!-- Below displayed only if user posted own articles -->
+  <% if @user.articles && @user.articles.length >= 1  %> <!-- Below displayed only if user posted own articles -->
     <!-- Title -->
     <div class="row text-center">
       <div class="col-xs-12">

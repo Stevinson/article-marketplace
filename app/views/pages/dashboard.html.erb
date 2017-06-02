@@ -12,11 +12,11 @@
   </div>
   <br>
 
-  <!-- DASHBOARD -->
-  <% if @user.articles %> <!-- Author has articles? -->
+  <!-- DASHBOARD - meta information of a user's article activity -->
+  <% if @user.articles %> <!-- Ensure that a user has some articles -->
     <!-- STATS -->
     <div class="row">
-      <!-- Money -->
+      <!-- Display the amount of money that the user has earned from their articles -->
       <div class="col-xs-5 text-center">
         <h3>£ <%= @user.readings.sum(:price) || 0 %></h3>
         <p>collected</p>
@@ -25,7 +25,7 @@
         <br>
         <p>from</p>
       </div>
-      <!-- Bookings -->
+      <!-- How many bookings has the user received from other users -->
       <div class="col-xs-5 text-center">
         <h3><%= @user.readings.length || 0 %></h3>
         <p>bookings</p>
@@ -33,15 +33,16 @@
     </div>
   <% end %>
 
-  <% if @user.articles && @user.articles.length >= 1 %> <!-- Author has articles? -->
+  <!--  -->
+  <% if @user.articles && @user.articles.length >= 1 %> <!-- Check that author has articles? -->
     <hr>
-    <% if !@user.readings %> <!-- Author has readers? -->
+    <% if @user.readings.length == 0 %> <!-- If no readers then display message -->
       <div class="row text-center">
         <div class="col-xs-12">
           <h4 class="header">No one has purchased access to your articles</h4>
         </div>
       </div>
-    <% else %>
+    <% else %> <!-- Otherwise... -->
       <div class="row">
         <div class="col-xs-12 text-center">
           <h3>Top readers</h3>

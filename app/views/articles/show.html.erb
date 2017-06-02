@@ -1,132 +1,128 @@
 <!-- The page that displays all the info about an article -->
 <!-- Article banner image -->
-<% if @article.photo? %>
-  <div class="banner-unpolarise" style="background-image: url('<%= cl_image_path @article.photo.path %>') "></div>
-      <%# cl_image_tag @article.photo.path, class: "banner-unpolarise", crop: :fill %>
-<% end %>
-<!-- Article information andb booking -->
-<div class="container padded-top">
+<div class="body-container">
+  <% if @article.photo? %>
+    <div class="banner-unpolarise" style="background-image: url('<%= cl_image_path @article.photo.path %>') "></div>
+        <%# cl_image_tag @article.photo.path, class: "banner-unpolarise", crop: :fill %>
+  <% end %>
+  <!-- Article information andb booking -->
+  <div class="container padded-top">
 
-  <div class="row">
-
-    <!-- ARTICLE: FREE INFORMATION -->
-    <div class="col-xs-8">
-
-      <div class="row">
-        <div class="col-xs-12">
-          <h2><%= @article.title %></h2>
-        </div>
-      </div>
-
-      <div class="row">
-
-        <!-- Author, date added and price -->
-        <div class="col-xs-10">
-          <h4>By <%= "#{@article.user.first_name} #{@article.user.last_name[0]}." if (@article.user.first_name && @article.user.last_name) %></h4>
-          <p>Posted on <%= @article.created_at.to_date %></p>
-          <p>(£<%= @article.price %> / day) </p>
-        </div>
-
-        <!-- Links to edit and delete if user is article owner -->
-        <div class="col-xs-2">
-          <% if @article.user == current_user %>
-            <%= link_to edit_article_path(@article) do %>
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            <% end %>
-            <%= link_to article_path(@article), method: :delete do %>
-              <i class="fa fa-trash-o" aria-hidden="true"></i>
-            <% end %>
-          <% end %>
-        </div>
-
-      </div>
-
-      <!-- Summary -->
-      <div class="row">
-        <div class="col-xs-12">
-          <p><em><%= @article.summary %></em></p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- BOOKING FORM -->
-    <!-- Booking information not displayed for owners, only for readers. If a reader has an active booking, booking details are displayed. Otherwise, a booking form is displayed -->
-    <div class="col-xs-4">
-      <% if user_signed_in? %>
-        <% unless @article.user == current_user %>
-          <% if current_user.booked_articles.include? @article %>
-            <%= render 'bookings/summary', booking: Booking.find_by(article: @article, user: current_user) %>
-          <% else %>
-            <%= render 'bookings/form', article: @article, booking: @booking %>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-
-  </div>
-
-  <!-- ARTICLE: LOCKED CONTENT -->
-  <!-- URL shown only to article owners and readers who currently have a booking -->
-  <div class="row">
-    <div class="col-xs-12">
-      <% if user_signed_in? %>
-        <% accessible_articles = current_user.articles + current_user.today_booked_articles %>
-        <% if accessible_articles.include? @article %>
-          <%= link_to @article.url, @article.url %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-
-  <br>
-
-  <!-- REVIEWS -->
-  <div class="row">
-    <div class="col-xs-12">
-      <h3>All reviews for <%= @article.title.capitalize %></h3>
-    </div>
-  </div>
-
-  <!-- Number of reviews -->
-  <p>(<%= @article.reviews.length %> reviews)</p>
-  <br>
-
-  <!-- Reviews' rating and body -->
-  <% @article.reviews.each do |review| %>
     <div class="row">
 
-      <div class="col-xs-3">
-        <% 1.upto(5) do |i| %>
-          <% if i <= review.rating %>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          <% else %>
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-         <% end %>
+      <!-- ARTICLE: FREE INFORMATION -->
+      <div class="col-xs-8">
+
+        <div class="row">
+          <div class="col-xs-12">
+            <h2><%= @article.title %></h2>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Author, date added and price -->
+          <div class="col-xs-10">
+            <h4>By <%= "#{@article.user.first_name} #{@article.user.last_name[0]}." if (@article.user.first_name && @article.user.last_name) %></h4>
+            <p>Posted on <%= @article.created_at.to_date %></p>
+            <p>(£<%= @article.price %> / day) </p>
+          </div>
+          <!-- Links to edit and delete if user is article owner -->
+          <div class="col-xs-2">
+            <% if @article.user == current_user %>
+              <%= link_to edit_article_path(@article) do %>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <% end %>
+              <%= link_to article_path(@article), method: :delete do %>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="row">
+          <div class="col-xs-12">
+            <p><em><%= @article.summary %></em></p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BOOKING FORM -->
+      <!-- Booking information not displayed for owners, only for readers. If a reader has an active booking, booking details are displayed. Otherwise, a booking form is displayed -->
+      <div class="col-xs-4">
+        <% if user_signed_in? %>
+          <% unless @article.user == current_user %>
+            <% if current_user.booked_articles.include? @article %>
+              <%= render 'bookings/summary', booking: Booking.find_by(article: @article, user: current_user) %>
+            <% else %>
+              <%= render 'bookings/form', article: @article, booking: @booking %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
 
+    </div>
 
-      <div class="col-xs-9">
-        <p><em><%= review.content %></em></p>
+    <!-- ARTICLE: LOCKED CONTENT -->
+    <!-- URL shown only to article owners and readers who currently have a booking -->
+    <div class="row">
+      <div class="col-xs-12">
+        <% if user_signed_in? %>
+          <% accessible_articles = current_user.articles + current_user.today_booked_articles %>
+          <% if accessible_articles.include? @article %>
+            <%= link_to "Read this article", @article.url %>
+          <% end %>
+        <% end %>
       </div>
-
     </div>
-    <hr>
 
-  <% end %>
+    <br>
 
-  <!-- Only readers who purchased access to articles can write reviews. Article owners and other users cannot add a review. -->
-  <div class="row">
-    <div class="col-xs-12">
-      <% if user_signed_in? && (current_user.today_booked_articles.include? @article) %>
-        <h4>Leave a review</h4>
-        <%= render template: 'reviews/new' %>
-      <% end %>
+    <!-- REVIEWS -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>All reviews for <%= @article.title.capitalize %></h3>
+      </div>
     </div>
+
+    <!-- Number of reviews -->
+    <p>(<%= @article.reviews.length %> reviews)</p>
+    <br>
+
+    <!-- Reviews' rating and body -->
+    <% @article.reviews.each do |review| %>
+      <div class="row">
+
+        <div class="col-xs-3">
+          <% 1.upto(5) do |i| %>
+            <% if i <= review.rating %>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            <% else %>
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+           <% end %>
+          <% end %>
+        </div>
+
+        <div class="col-xs-9">
+          <p><em><%= review.content %></em></p>
+        </div>
+
+      </div>
+      <hr>
+
+    <% end %>
+
+    <!-- Only readers who purchased access to articles can write reviews. Article owners and other users cannot add a review. -->
+    <div class="row">
+      <div class="col-xs-12">
+        <% if user_signed_in? && (current_user.today_booked_articles.include? @article) %>
+          <h4>Leave a review</h4>
+          <%= render template: 'reviews/new' %>
+        <% end %>
+      </div>
+    </div>
+
   </div>
-
-
 </div>
 
 

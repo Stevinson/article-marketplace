@@ -5,7 +5,7 @@
   color: $unpolarise-off-white;
   border-radius: 3px;
   padding: 8px 24px;
-  margin-left: 8px;
+  // margin-left: 8px;
 }
 
 // Main custom button to be used on page
@@ -27,4 +27,9 @@
   a {
     color: $unpolarise-orange-opacity-dark;
   }
+}
+
+// Button on the home page to search
+.btn-homepage-search {
+  margin-left: 3px;
 }

@@ -43,7 +43,7 @@
                   <p>
                     <% average_rating = article.reviews.reduce(0){|sum, r| sum + r.rating} / article.reviews.length.to_f %>
                     <% 1.upto(5) do |i| %>
-                      <% if i <= average_rating %>
+                      <% if average_rating >= i %>
                         <i class="fa fa-star icon" aria-hidden="true"></i>
                       <% elsif (i-1...i).include? average_rating  %>
                         <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
@@ -121,10 +121,10 @@
 
                       <% if i <= average_rating %>
                         <i class="fa fa-star icon" aria-hidden="true"></i>
-                      <% elsif (i-1..i).include? average_rating  %>
-                        <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
-                      <% else %>
+                      <% elsif average_rating < i  %>
                         <i class="fa fa-star-o icon" aria-hidden="true"></i>
+                      <% else %>
+                        <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
                      <% end %>
                     <% end %>
 

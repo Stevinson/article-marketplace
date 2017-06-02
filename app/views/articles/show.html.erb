@@ -70,7 +70,7 @@
         <% if user_signed_in? %>
           <% accessible_articles = current_user.articles + current_user.today_booked_articles %>
           <% if accessible_articles.include? @article %>
-            <%= link_to "Read this article", @article.url %>
+            <%= link_to "Read this article", @article.url, class: "unpolarise-orange" %>
           <% end %>
         <% end %>
       </div>

@@ -20,6 +20,7 @@ gem 'valid_url'
 
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap-datepicker-rails'
+gem 'rails-assets-jquery-bar-rating', source: 'https://rails-assets.org'
 
 group :development, :test do
   gem 'binding_of_caller'

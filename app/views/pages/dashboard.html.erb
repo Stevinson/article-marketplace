@@ -68,7 +68,7 @@
       <% elsif @user.readings.length == 2 %> <!-- only 2 readers -->
         <div class="row">
           <div class="col-xs-12 col-sm-6 text-center">
-            <%= "#{@user.top_readers[0][1].first_name} #{@user.top_readers[0][1].last_name[0]}." %>
+            <%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %>
           </div>
           <div class="col-xs-12 col-sm-6 text-center">
             <%= "#{@user.top_readers[0][1].first_name} #{@user.top_readers[0][1].last_name[0]}." %>

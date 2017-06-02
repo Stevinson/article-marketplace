@@ -62,28 +62,40 @@
       <% if !@user.top_readers[1] %> <!-- only 1 reader -->
         <div class="row">
           <div class="col-xs-12 text-center">
-            <%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %>
+            <p><%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %></p>
+            <% avatar_url = @user.top_readers[0][0].facebook_picture_url || "http://placehold.it/50x50" %>
+            <%= image_tag avatar_url, class: "avatar-large" %>
           </div>
         </div>
       <% elsif !@user.top_readers[2] %> <!-- only 2 readers -->
         <div class="row">
           <div class="col-xs-12 col-sm-6 text-center">
-            <%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %>
+            <p><%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %></p>
+            <% avatar_url = @user.top_readers[0][0].facebook_picture_url || "http://placehold.it/50x50" %>
+            <%= image_tag avatar_url, class: "avatar-large" %>
           </div>
           <div class="col-xs-12 col-sm-6 text-center">
-            <%= "#{@user.top_readers[1][0].first_name} #{@user.top_readers[1][0].last_name[0]}." %>
+            <p><%= "#{@user.top_readers[1][0].first_name} #{@user.top_readers[1][0].last_name[0]}." %></p>
+            <% avatar_url = @user.top_readers[1][0].facebook_picture_url || "http://placehold.it/50x50" %>
+            <%= image_tag avatar_url, class: "avatar-large" %>
           </div>
         </div>
       <% else %> <!-- 3 or more readers -->
         <div class="row">
           <div class="col-xs-12 col-sm-4 text-center">
-            <%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %>
+            <p><%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %></p>
+            <% avatar_url = @user.top_readers[0][0].facebook_picture_url || "http://placehold.it/50x50" %>
+            <%= image_tag avatar_url, class: "avatar-large" %>
           </div>
           <div class="col-xs-12 col-sm-4 text-center">
-            <%= "#{@user.top_readers[1][0].first_name} #{@user.top_readers[1][0].last_name[0]}." %>
+            <p><%= "#{@user.top_readers[1][0].first_name} #{@user.top_readers[1][0].last_name[0]}." %></p>
+            <% avatar_url = @user.top_readers[1][0].facebook_picture_url || "http://placehold.it/50x50" %>
+            <%= image_tag avatar_url, class: "avatar-large" %>
           </div>
           <div class="col-xs-12 col-sm-4 text-center">
-            <%= "#{@user.top_readers[2][0].first_name} #{@user.top_readers[2][0].last_name[0]}." %>
+            <p><%= "#{@user.top_readers[2][0].first_name} #{@user.top_readers[2][0].last_name[0]}." %></p>
+            <% avatar_url = @user.top_readers[2][0].facebook_picture_url || "http://placehold.it/50x50" %>
+            <%= image_tag avatar_url, class: "avatar-large" %>
           </div>
         </div>
       <% end %>

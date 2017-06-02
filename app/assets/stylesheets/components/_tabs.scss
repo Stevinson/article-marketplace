@@ -1,44 +1,67 @@
 .tabs {
   display: flex;
-  padding: 10px 15px 0 15px;
+  // padding: 10px 15px 0 15px;
 }
-.tabs a {
-  color: $unpolarise-off-white;
-}
+// .tabs a {
+//   color: $unpolarise-off-white;
+// }
 .tabs a:hover {
   cursor: pointer;
+  color: black;
   text-decoration: none;
   opacity: 0.8;
 }
 .tabs h3 {
   font-size: 17px;
-  font-weight: bold;
+  //font-weight: bold;
   margin: 0;
 }
+
 .tabs p {
   opacity: 0.5;
   margin-bottom: 0;
 }
 .tab {
-  background: $unpolarise-dark-grey;
+  border: 1px solid $unpolarise-orange-opacity-dark;
   flex: 1 1 auto;
   text-align: center;
   padding: 20px 0;
+  color: $unpolarise-orange-opacity-dark;
 }
-.tab:first-child {
-  border-radius: 10px 0 0 0;
-}
-.tab:last-child {
-  border-radius: 0 10px 0 0;
-}
+
 .tab.active {
-  background: $unpolarise-off-white;
-  color: black;
+  background: $unpolarise-orange-opacity-dark;
+  color: $unpolarise-off-white;
+  h3 {
+    font-weight: bold;
+  }
 }
 .tab-content {
-  padding-top: 50px;
+  padding-top: 10px;
 }
-.tab-content p {
+
+.no-article p {
   font-size: 20px;
-  font-weight: bold;
+  font-weight: bolder;
+  color: $unpolarise-light-grey;
 }
+
+.list-booking a {
+  font-weight: bolder;
+  color: black;
+}
+
+.list-booking a:hover {
+  color: $unpolarise-orange-opacity-dark;
+}
+
+.list-titles h3 {
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
+.tab-content img {
+  padding-top: 100px;
+}
+
+

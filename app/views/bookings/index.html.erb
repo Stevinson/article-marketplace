@@ -1,110 +1,174 @@
+<div class="tabs">
+  <a class="tab" data-target="#past">
+    <h3>Past Bookings</h3>
+  </a>
+  <a class="tab active" data-target="#current">
+    <h3>Active Bookings</h3>
+  </a>
+  <a class="tab" data-target="#upcoming">
+    <h3>Upcoming Bookings</h3>
+  </a>
+</div>
+
+<!-- Below the tabs -->
+
 <div class="container body-container">
-
-  <div class="row">
-    <div class="col-xs-12">
-      <h2>Your Bookings</h2>
-    </div>
-  </div>
-
-  <br>
 
   <!-- 3 tabs for active / past / upcoming bookings -->
   <% active_bookings = @user.bookings.select { |booking| booking.start_date <= Date.today && booking.end_date >= Date.today } %>
   <% past_bookings = @user.bookings.select { |booking| booking.end_date < Date.today } %>
   <% upcoming_bookings = @user.bookings.select { |booking| booking.start_date > Date.today } %>
 
-
-  <!-- Tab titles -->
-  <div class="row">
-    <div class="tabs">
-      <a class="tab" data-target="#past">
-        <h3>Past Bookings</h3>
-      </a>
-      <a class="tab active" data-target="#current">
-        <h3>Active Bookings</h3>
-      </a>
-      <a class="tab" data-target="#upcoming">
-        <h3>Upcoming Bookings</h3>
-      </a>
-    </div>
-  </div>
-
   <!-- Bookings -->
   <div class="row">
     <div class="container text-center">
 
-
+      <!-- Past bookings tabs -->
       <div class="tab-content hidden" id="past">
+
         <% if past_bookings.any? %>
+
+          <!-- Tab titles -->
+          <div class="row list-titles">
+            <div class="col-md-3">
+              <h3>Booking Dates</h3>
+            </div>
+            <div class="col-md-7">
+              <h3>Booked Article Title</h3>
+            </div>
+            <div class="col-md-2">
+              <h3>Booking Price</h3>
+            </div>
+          </div>
+
           <% past_bookings.each do |booking| %>
 
             <!-- One card per booking linking to the article page -->
-
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-              <%= link_to article_path(booking.article) do %>
-                <div class="card">
-                  <h3><%= booking.article.title %></h3>
-                  <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
-                  <p>£<%= booking.price %></p>
-                </div>
-              <% end %>
+            <div class="row list-booking">
+              <div class="col-md-3">
+                <p>From <%= booking.start_date.strftime('%b %d, %Y') %> to <%= booking.end_date.strftime('%b %d, %Y') %></p>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                <%= link_to article_path(booking.article) do %>
+                  <p><%= booking.article.title %></p>
+                <% end %>
+              </div>
+              <div class="col-md-2">
+                <p>£<%= booking.price %></p>
+              </div>
             </div>
 
           <% end %>
+
         <% else %>
-          <p>You don't have any past bookings.</p>
+
+          <%= image_tag("uh-oh.png") %>
+          <div class="no-article">
+            <p>You don't have any past bookings.</p>
+          </div>
+
         <% end %>
+
       </div>
 
+      <!-- Active bookings tabs -->
 
       <div class="tab-content" id="current">
+
         <% if active_bookings.any? %>
+
+          <div class="row list-titles">
+            <div class="col-md-3">
+              <h3>Booking Dates</h3>
+            </div>
+            <div class="col-md-7">
+              <h3>Booked Article Title</h3>
+            </div>
+            <div class="col-md-2">
+              <h3>Booking Price</h3>
+            </div>
+          </div>
+
           <% active_bookings.each do |booking| %>
 
             <!-- One card per booking linking to the article page -->
 
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-              <%= link_to article_path(booking.article) do %>
-                <div class="card">
-                  <h3><%= booking.article.title %></h3>
-                  <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
-                  <p>£<%= booking.price %></p>
-                </div>
-              <% end %>
+            <div class="row list-booking">
+              <div class="col-md-3">
+                <p>From <%= booking.start_date.strftime('%b %d, %Y') %> to <%= booking.end_date.strftime('%b %d, %Y') %></p>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                <%= link_to article_path(booking.article) do %>
+                  <p><%= booking.article.title %></p>
+                <% end %>
+              </div>
+              <div class="col-md-2">
+                <p>£<%= booking.price %></p>
+              </div>
             </div>
-
           <% end %>
+
         <% else %>
-          <p>You don't have any active bookings.</p>
+
+          <%= image_tag("uh-oh.png") %>
+          <div class="no-article">
+            <p>You don't have any active bookings.</p>
+          </div>
+
         <% end %>
+
       </div>
 
+      <!-- Upcoming bookings tabs -->
+
       <div class="tab-content hidden" id="upcoming">
+
         <% if upcoming_bookings.any? %>
+
+          <div class="row list-titles">
+            <div class="col-md-3">
+              <h3>Booking Dates</h3>
+            </div>
+            <div class="col-md-7">
+              <h3>Booked Article Title</h3>
+            </div>
+            <div class="col-md-2">
+              <h3>Booking Price</h3>
+            </div>
+          </div>
+
           <% upcoming_bookings.each do |booking| %>
 
             <!-- One card per booking linking to the article page -->
 
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-              <%= link_to article_path(booking.article) do %>
-                <div class="card">
-                  <h3><%= booking.article.title %></h3>
-                  <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
-                  <p>£<%= booking.price %></p>
-                </div>
-              <% end %>
+            <div class="row list-booking">
+              <div class="col-md-3">
+                <p>From <%= booking.start_date.strftime('%b %d, %Y') %> to <%= booking.end_date.strftime('%b %d, %Y') %></p>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+                <%= link_to article_path(booking.article) do %>
+                  <p><%= booking.article.title %></p>
+                <% end %>
+              </div>
+              <div class="col-md-2">
+                <p>£<%= booking.price %></p>
+              </div>
             </div>
 
           <% end %>
+
         <% else %>
-          <p>You don't have any upcoming bookings.</p>
+
+          <%= image_tag("uh-oh.png") %>
+          <div class="no-article">
+            <p>You don't have any upcoming bookings.</p>
+          </div>
+
         <% end %>
+
       </div>
-
-
 
     </div>
   </div>
-
 </div>
 

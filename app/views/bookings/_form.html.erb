@@ -1,15 +1,17 @@
-<%= simple_form_for [article, booking] do |f| %>
+<div class="booking-card">
+  <%= simple_form_for [article, booking] do |f| %>
 
-  <!-- USER INPUTS: DATES -->
-  <%= f.input :start_date, required: true, as: :string, input_html: {class: "datepicker", id: "start"} %>
-  <%= f.input :end_date, required: true, as: :string, input_html: {class: "datepicker", id: "end"} %>
+    <!-- USER INPUTS: DATES -->
+    <%= f.input :start_date, required: true, as: :string, input_html: {class: "datepicker", id: "start"} %>
+    <%= f.input :end_date, required: true, as: :string, input_html: {class: "datepicker", id: "end"} %>
 
-  <hr>
-  <div id="total_days"></div>
-  <p id="price_per_day">Price per day: £ <%= article.price %></p>
-  <div id="total_price"></div>
-  <%= f.submit class: "btn-form-unpolarise", id: "submit-booking" %>
-<% end %>
+    <hr>
+    <div id="total_days"></div>
+    <p id="price_per_day">Price per day: £ <%= article.price %></p>
+    <div id="total_price"></div>
+    <%= f.submit class: "btn-form-unpolarise", id: "submit-booking" %>
+  <% end %>
+</div>
 
 <!-- ANIMATION -->
 <% content_for(:after_js) do %>

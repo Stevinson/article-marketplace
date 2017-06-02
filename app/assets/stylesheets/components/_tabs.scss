@@ -42,6 +42,11 @@
     font-weight: bold;
   }
 }
+
+.tab.active a:hover {
+  color: $unpolarise-off-white;
+}
+
 .tab-content {
   padding-top: 10px;
 }

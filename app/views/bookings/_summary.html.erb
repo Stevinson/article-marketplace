@@ -1,9 +1,11 @@
-<h4>Your booking</h4>
+<div class="booking-card">
+  <h4>Your booking</h4>
 
-<p>Start date: <strong><%= booking.start_date %></strong></p>
-<p>End date: <strong><%= booking.end_date %></strong></p>
-<hr>
-<p>Total days: <strong><%= (booking.end_date - booking.start_date).to_i %></strong></p>
-<p>Price per day: <strong>£ <%= @article.price %></strong></p>
-<hr>
-<h5>Total price: <strong>£ <%= booking.price %></strong></h5>
+  <p>Start date: <strong><%= booking.start_date %></strong></p>
+  <p>End date: <strong><%= booking.end_date %></strong></p>
+  <hr>
+  <p>Total days: <strong><%= (booking.end_date - booking.start_date).to_i %></strong></p>
+  <p>Price per day: <strong>£ <%= @article.price %></strong></p>
+  <hr>
+  <h5>Total price: <strong>£ <%= booking.price %></strong></h5>
+</div>

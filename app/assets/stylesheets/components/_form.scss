@@ -52,4 +52,13 @@ textarea.form-control {
   margin-top: 80px;
 }
 
+// Booking form styling
 
+.booking-card {
+  background-color: $unpolarise-lighter-grey;
+  padding: 20px 20px 20px 20px;
+  border-radius: 3px;
+  hr {
+   border: 0.5px solid $unpolarise-light-grey;
+  };
+}

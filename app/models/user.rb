@@ -40,4 +40,26 @@ class User < ApplicationRecord
 
     return user
   end
+
+  # Return the top 3 'readers' of a user based on the bookings made on the user's articles
+  def top_readers
+    readers_with_duplicates = []
+    self.articles.each { |article| readers_with_duplicates << article.readers }
+    readers = readers_with_duplicates.uniq
+    frequency = Hash.new(0)
+    readers.each { |reader| frequency[reader] += 1 }
+    frequency.sort_by { |key, value| value }
+    if readers.length > 1
+      top_one = frequency.keys.last
+      if readers.length > 2
+        frequency.delete(top_one)
+        top_two = frequency.keys.last
+        if readers.length > 3
+          frequency.delete(top_two)
+          top_three = frequency.keys.last
+        end
+      end
+    end
+    return [top_one, top_two, top_three]
+  end
 end

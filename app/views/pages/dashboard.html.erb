@@ -33,16 +33,27 @@
     </div>
   <% end %>
 
+  <!-- Give a message to the user if they have not posted any articles -->
+  <% if @user.articles.length == 0 %>
+    <div class="row text-center">
+      <div class="col-xs-12">
+        <h4 class="header2">You have not uploaded any articles yet</h4>
+      </div>
+    </div>
+  <% end %>
+
   <!--  -->
   <% if @user.articles && @user.articles.length >= 1 %> <!-- Check that author has articles? -->
     <hr>
-    <% if @user.readings.length == 0 %> <!-- If no readers then display message -->
+    <!-- If the user has no 'readers' then display message saying so -->
+    <% if @user.readings.length == 0 %>
       <div class="row text-center">
         <div class="col-xs-12">
           <h4 class="header">No one has purchased access to your articles</h4>
         </div>
       </div>
-    <% else %> <!-- Otherwise... -->
+    <!-- Otherwise display the top 3 'readers' to a user -->
+    <% else %>
       <div class="row">
         <div class="col-xs-12 text-center">
           <h3>Top readers</h3>
@@ -51,28 +62,28 @@
       <% if @user.readings.length == 1 %> <!-- only 1 reader -->
         <div class="row">
           <div class="col-xs-12 text-center">
-            <%= "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0]}." %>
+            <%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %>
           </div>
         </div>
       <% elsif @user.readings.length == 2 %> <!-- only 2 readers -->
         <div class="row">
           <div class="col-xs-12 col-sm-6 text-center">
-            <%= "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0]}." %>
+            <%= "#{@user.top_readers[0][1].first_name} #{@user.top_readers[0][1].last_name[0]}." %>
           </div>
           <div class="col-xs-12 col-sm-6 text-center">
-            <%= "#{@user.top_readers[1].first_name} #{@user.top_readers[1].last_name[0]}." %>
+            <%= "#{@user.top_readers[0][1].first_name} #{@user.top_readers[0][1].last_name[0]}." %>
           </div>
         </div>
       <% else %> <!-- 3 or more readers -->
         <div class="row">
           <div class="col-xs-12 col-sm-4 text-center">
-            <%= "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0]}." %>
+            <%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %>
           </div>
           <div class="col-xs-12 col-sm-4 text-center">
-            <%= "#{@user.top_readers[1].first_name} #{@user.top_readers[1].last_name[0]}." %>
+            <%= "#{@user.top_readers[0][1].first_name} #{@user.top_readers[0][1].last_name[0]}." %>
           </div>
           <div class="col-xs-12 col-sm-4 text-center">
-            <%= "#{@user.top_readers[2].first_name} #{@user.top_readers[2].last_name[0]}." %>
+            <%= "#{@user.top_readers[0][2].first_name} #{@user.top_readers[0][2].last_name[0]}." %>
           </div>
         </div>
       <% end %>
@@ -81,7 +92,8 @@
   <% end %>
   <br>
 
-  <% if @user.articles && @user.articles.length >= 1  %> <!-- Below displayed only if user posted own articles -->
+  <!-- Displayed only if the user has posted their own articles -->
+  <% if @user.articles && @user.articles.length >= 1  %>
     <!-- Title -->
     <div class="row text-center">
       <div class="col-xs-12">

@@ -16,28 +16,6 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_to user_path(@user)
   end
 
-  # def top_readers
-  #   # Returns top 3 readers based on bookings made on own articles
-  #   readers_with_duplicates = []
-  #   self.articles.each { |article| readers_with_duplicates << article.readers }
-  #   readers = readers_with_duplicates.uniq
-  #   frequency = Hash.new(0)
-  #   readers.each { |reader| hash[reader] +=1 }
-  #   hash.sort_by { |key, value| value }
-  #   if readers.length > 1
-  #     top_one = hash.keys.last
-  #     if readers.length > 2
-  #       hash.delete(top_one)
-  #       top_two = hash.keys.last
-  #       if readers.length > 3
-  #         hash.delete(top_two)
-  #         top_three = hash.keys.last
-  #       end
-  #     end
-  #   end
-  #   return [top_one, top_two, top_three]
-  # end
-
   private
 
   def set_user

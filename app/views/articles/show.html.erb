@@ -90,6 +90,7 @@
     <br>
 
     <!-- Reviews' rating and body -->
+
     <div id="reviews">
       <% @article.reviews.each do |review| %>
         <div>
@@ -100,14 +101,20 @@
     </div>
 
     <!-- Only readers who purchased access to articles can write reviews. Article owners and other users cannot add a review. -->
-    <div class="row">
-      <div class="col-xs-12">
-        <% if user_signed_in? && (current_user.today_booked_articles.include? @article) %>
+
+    <% if user_signed_in? && (current_user.today_booked_articles.include? @article) %>
+      <div class="row">
+        <div class="col-xs-3">
           <h4>Leave a review</h4>
           <div id="new_review"><%= render "reviews/form", article: @article, review: @review %></div>
         <% end %>
+
       </div>
-    </div>
+      <div class="row">
+        <%= render 'reviews/form', article: @article, review: @review %>
+      </div>
+    <% end %>
+
 
   </div>
 </div>

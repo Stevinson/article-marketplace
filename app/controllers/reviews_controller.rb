@@ -1,8 +1,5 @@
 class ReviewsController < ApplicationController
   before_action :set_article
-  def new
-    @review = Review.new
-  end
 
   def create
     @review = Review.new(review_params)
@@ -18,9 +15,6 @@ class ReviewsController < ApplicationController
         format.html { render "articles/show" }
         format.js
       end
-    end
-
-    def show
     end
   end
 

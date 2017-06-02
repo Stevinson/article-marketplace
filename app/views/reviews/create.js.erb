@@ -3,11 +3,12 @@
   $('#new_review').html("<%= j render 'reviews/form', article: @article, review: @review %>");
 <% else %>
   // Create a paragraph for the new review. But hide it.
-  var new_review = $("<%= j render 'reviews/show', review: @review %>").hide();
+  var newReview = $("<%= j render 'reviews/review', review: @review %>").hide();
   // Add it to the DOM, at the end of the existing reviews. It's still hidden.
-  $('#reviews').append(new_review);
+  $('#reviews').append(newReview);
   // Show the new review with an animation!
-  new_review.slideDown();
+  newReview.slideDown();
   // Reset the form
   $('#new_review').html("<%= j render 'reviews/form', article: @article, review: Review.new %>");
 <% end %>
+initBarrating();

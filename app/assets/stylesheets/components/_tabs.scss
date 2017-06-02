@@ -7,7 +7,6 @@
 // }
 .tabs a:hover {
   cursor: pointer;
-  color: black;
   text-decoration: none;
   opacity: 0.8;
 }
@@ -29,6 +28,10 @@
   color: $unpolarise-orange-opacity-dark;
 }
 
+.tab a:hover {
+  color: black;
+}
+
 .tab.active {
   background: $unpolarise-orange-opacity-dark;
   color: $unpolarise-off-white;
@@ -36,6 +39,11 @@
     font-weight: bold;
   }
 }
+
+.tab.active a:hover {
+  color: $unpolarise-off-white;
+}
+
 .tab-content {
   padding-top: 10px;
 }

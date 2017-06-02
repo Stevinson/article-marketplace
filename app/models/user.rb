@@ -45,11 +45,13 @@ class User < ApplicationRecord
   def top_readers
     readers_with_duplicates = []
     self.articles.each { |article| readers_with_duplicates << article.readers }
+
     readers_with_duplicates.flatten!
     readers = readers_with_duplicates.uniq
     frequency = Hash.new(0)
     readers_with_duplicates.each { |r| frequency[r] += 1 }
     array = frequency.sort_by { |key, value| value }
     return [array[-1], array[-2], array[-3]]
+
   end
 end

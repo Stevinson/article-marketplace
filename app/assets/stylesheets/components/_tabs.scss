@@ -7,9 +7,11 @@
 // }
 .tabs a:hover {
   cursor: pointer;
+  // color: black;
   text-decoration: none;
   opacity: 0.8;
 }
+
 .tabs h3 {
   font-size: 17px;
   //font-weight: bold;
@@ -28,8 +30,9 @@
   color: $unpolarise-orange-opacity-dark;
 }
 
-.tab a:hover {
-  color: black;
+.tab:hover {
+  background-color: $unpolarise-orange-opacity-lightest;
+  color: $unpolarise-orange-opacity-dark;
 }
 
 .tab.active {

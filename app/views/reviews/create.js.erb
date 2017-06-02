@@ -1,0 +1,14 @@
+<% if @review.errors.any? %>
+  // Render new review form with errors
+  $('#new_review').html("<%= j render 'reviews/form', article: @article, review: @review %>");
+<% else %>
+  // Create a paragraph for the new review. But hide it.
+  var newReview = $("<%= j render 'reviews/review', review: @review %>").hide();
+  // Add it to the DOM, at the end of the existing reviews. It's still hidden.
+  $('#reviews').append(newReview);
+  // Show the new review with an animation!
+  newReview.slideDown();
+  // Reset the form
+  $('#new_review').html("<%= j render 'reviews/form', article: @article, review: Review.new %>");
+<% end %>
+initBarrating();

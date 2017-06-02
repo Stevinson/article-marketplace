@@ -90,27 +90,15 @@
     <br>
 
     <!-- Reviews' rating and body -->
-    <% @article.reviews.each do |review| %>
-      <div class="row">
 
-        <div class="col-xs-3 resized-icons">
-          <% 1.upto(5) do |i| %>
-            <% if i <= review.rating %>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            <% else %>
-              <i class="fa fa-star-o" aria-hidden="true"></i>
-           <% end %>
-          <% end %>
+    <div id="reviews">
+      <% @article.reviews.each do |review| %>
+        <div>
+          <%= render 'reviews/review', review: review %>
+          <hr>
         </div>
-
-        <div class="col-xs-8">
-          <p><em><%= review.content %></em> - <%= "#{review.user.first_name} #{review.user.last_name[0]}." %></p>
-        </div>
-
-      </div>
-      <hr>
-
-    <% end %>
+      <% end %>
+    </div>
 
     <!-- Only readers who purchased access to articles can write reviews. Article owners and other users cannot add a review. -->
 
@@ -118,7 +106,9 @@
       <div class="row">
         <div class="col-xs-3">
           <h4>Leave a review</h4>
-        </div>
+          <div id="new_review"><%= render "reviews/form", article: @article, review: @review %></div>
+        <% end %>
+
       </div>
       <div class="row">
         <%= render 'reviews/form', article: @article, review: @review %>

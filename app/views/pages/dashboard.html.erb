@@ -1,55 +1,132 @@
 <!-- Page that displays all of a user's articles -->
 <div class="container body-container">
-  <!-- Title -->
-  <div class="row text-center">
-    <div class="col-xs-12">
-      <h2 class="header">Your Articles</h2>
-    </div>
-  </div>
+
+  <!-- CALL TO ACTION -->
   <!-- Button to add a new article to the site -->
+  <br>
+  <br>
   <div class="row text-center">
     <div class="col-xs-12">
       <%= link_to "SHARE NEW ARTICLE", new_article_path, class: "btn-main-unpolarise text-center" %>
     </div>
   </div>
-  <!-- Cards for each of the articles -->
-  <div class="row cards">
-    <% @user.articles.each do |article| %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <!-- One card per booking linking to the article page -->
-          <div class="card-small">
-            <!-- !!!!!!!!!!!!!!!!!!!!! Article image to go here -->
-            <%= link_to article_path(article) do %>
-              <h3 class="card-small-title"><%= article.title.capitalize %></h3>
-            <% end %>
-            <div class="card-small-content">
-              <!-- Date added -->
-              <p>Posted on <%= article.created_at.to_date %></p>
-              <!-- Fontawesome icons for edit and delete -->
-              <%= link_to edit_article_path(article) do %>
-                <i class="fa fa-pencil-square-o icon" aria-hidden="true"></i>
-              <% end %>
-              <%= link_to article_path(article), method: :delete do %>
-                <i class="fa fa-trash-o icon" aria-hidden="true"></i>
-              <% end %>
-              <!-- Average review -->
-              <p>
-                <% average_rating = article.reviews.reduce(0){|sum, r| sum + r.rating} / article.reviews.length.to_f %>
-                <% 1.upto(5) do |i| %>
-                  <% if i <= average_rating %>
-                    <i class="fa fa-star icon" aria-hidden="true"></i>
-                  <% elsif (i-1..i).include? average_rating  %>
-                    <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
-                  <% else %>
-                    <i class="fa fa-star-o icon" aria-hidden="true"></i>
-                 <% end %>
-                <% end %>
-                <p><em>(<%= article.reviews.length %> reviews)</em></p>
-              </p>
-              <p><span class="italic"><%= article.summary %></span></p>
-            </div>
-          </div>
+  <br>
+
+  <!-- DASHBOARD -->
+  <% if @user.articles %> <!-- Author has articles? -->
+    <!-- STATS -->
+    <div class="row">
+      <!-- Money -->
+      <div class="col-xs-5 text-center">
+        <h3>£ <%= @user.readings.sum(:price) || 0 %></h3>
+        <p>collected</p>
       </div>
+      <div class="col-xs-2 text-center">
+        <br>
+        <p>from</p>
+      </div>
+      <!-- Bookings -->
+      <div class="col-xs-5 text-center">
+        <h3><%= @user.readings.length || 0 %></h3>
+        <p>bookings</p>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @user.articles && @user.articles.length >= 1 %> <!-- Author has articles? -->
+    <hr>
+    <% if !@user.readings %> <!-- Author has readers? -->
+      <div class="row text-center">
+        <div class="col-xs-12">
+          <h4 class="header">No one has purchased access to your articles</h4>
+        </div>
+      </div>
+    <% else %>
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <h3>Top readers</h3>
+        </div>
+      </div>
+      <% if @user.readings.length == 1 %> <!-- only 1 reader -->
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <%= "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0]}." %>
+          </div>
+        </div>
+      <% elsif @user.readings.length == 2 %> <!-- only 2 readers -->
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 text-center">
+            <%= "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0]}." %>
+          </div>
+          <div class="col-xs-12 col-sm-6 text-center">
+            <%= "#{@user.top_readers[1].first_name} #{@user.top_readers[1].last_name[0]}." %>
+          </div>
+        </div>
+      <% else %> <!-- 3 or more readers -->
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 text-center">
+            <%= "#{@user.top_readers[0].first_name} #{@user.top_readers[0].last_name[0]}." %>
+          </div>
+          <div class="col-xs-12 col-sm-4 text-center">
+            <%= "#{@user.top_readers[1].first_name} #{@user.top_readers[1].last_name[0]}." %>
+          </div>
+          <div class="col-xs-12 col-sm-4 text-center">
+            <%= "#{@user.top_readers[2].first_name} #{@user.top_readers[2].last_name[0]}." %>
+          </div>
+        </div>
+      <% end %>
+      <hr>
     <% end %>
-  </div>
+  <% end %>
+  <br>
+
+  <% if @user.articles && @user.articles.length >= 1  %> <!-- Below displayed only if user posted own articles -->
+    <!-- Title -->
+    <div class="row text-center">
+      <div class="col-xs-12">
+        <h3 class="header">My Articles</h3>
+      </div>
+    </div>
+    <!-- ARTICLES -->
+    <!-- Cards for each of the articles -->
+    <div class="row cards">
+      <% @user.articles.each do |article| %>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <!-- One card per booking linking to the article page -->
+            <div class="card-small">
+              <!-- !!!!!!!!!!!!!!!!!!!!! Article image to go here -->
+              <%= link_to article_path(article) do %>
+                <h3 class="card-small-title"><%= article.title.capitalize %></h3>
+              <% end %>
+              <div class="card-small-content">
+                <!-- Date added -->
+                <p>Posted on <%= article.created_at.to_date %></p>
+                <!-- Fontawesome icons for edit and delete -->
+                <%= link_to edit_article_path(article) do %>
+                  <i class="fa fa-pencil-square-o icon" aria-hidden="true"></i>
+                <% end %>
+                <%= link_to article_path(article), method: :delete do %>
+                  <i class="fa fa-trash-o icon" aria-hidden="true"></i>
+                <% end %>
+                <!-- Average review -->
+                <p>
+                  <% average_rating = article.reviews.reduce(0){|sum, r| sum + r.rating} / article.reviews.length.to_f %>
+                  <% 1.upto(5) do |i| %>
+                    <% if i <= average_rating %>
+                      <i class="fa fa-star icon" aria-hidden="true"></i>
+                    <% elsif (i-1..i).include? average_rating  %>
+                      <i class="fa fa-star-half-o icon" aria-hidden="true"></i>
+                    <% else %>
+                      <i class="fa fa-star-o icon" aria-hidden="true"></i>
+                   <% end %>
+                  <% end %>
+                  <p><em>(<%= article.reviews.length %> reviews)</em></p>
+                </p>
+                <p><span class="italic"><%= article.summary %></span></p>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

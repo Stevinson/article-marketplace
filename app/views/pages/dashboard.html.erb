@@ -46,7 +46,7 @@
   <% if @user.articles && @user.articles.length >= 1 %> <!-- Check that author has articles? -->
     <hr>
     <!-- If the user has no 'readers' then display message saying so -->
-    <% if @user.readings.length == 0 %>
+    <% if !@user.top_readers[0] %>
       <div class="row text-center">
         <div class="col-xs-12">
           <h4 class="header">No one has purchased access to your articles</h4>
@@ -59,19 +59,19 @@
           <h3>Top readers</h3>
         </div>
       </div>
-      <% if @user.readings.length == 1 %> <!-- only 1 reader -->
+      <% if !@user.top_readers[1] %> <!-- only 1 reader -->
         <div class="row">
           <div class="col-xs-12 text-center">
             <%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %>
           </div>
         </div>
-      <% elsif @user.readings.length == 2 %> <!-- only 2 readers -->
+      <% elsif !@user.top_readers[2] %> <!-- only 2 readers -->
         <div class="row">
           <div class="col-xs-12 col-sm-6 text-center">
             <%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %>
           </div>
           <div class="col-xs-12 col-sm-6 text-center">
-            <%= "#{@user.top_readers[0][1].first_name} #{@user.top_readers[0][1].last_name[0]}." %>
+            <%= "#{@user.top_readers[1][0].first_name} #{@user.top_readers[1][0].last_name[0]}." %>
           </div>
         </div>
       <% else %> <!-- 3 or more readers -->
@@ -80,10 +80,10 @@
             <%= "#{@user.top_readers[0][0].first_name} #{@user.top_readers[0][0].last_name[0]}." %>
           </div>
           <div class="col-xs-12 col-sm-4 text-center">
-            <%= "#{@user.top_readers[0][1].first_name} #{@user.top_readers[0][1].last_name[0]}." %>
+            <%= "#{@user.top_readers[1][0].first_name} #{@user.top_readers[1][0].last_name[0]}." %>
           </div>
           <div class="col-xs-12 col-sm-4 text-center">
-            <%= "#{@user.top_readers[0][2].first_name} #{@user.top_readers[0][2].last_name[0]}." %>
+            <%= "#{@user.top_readers[2][0].first_name} #{@user.top_readers[2][0].last_name[0]}." %>
           </div>
         </div>
       <% end %>

@@ -49,12 +49,12 @@ class User < ApplicationRecord
     frequency = Hash.new(0)
     readers.each { |reader| frequency[reader] += 1 }
     frequency.sort_by { |key, value| value }
-    if readers.length > 1
+    if readers.length > 0
       top_one = frequency.keys.last
-      if readers.length > 2
+      if readers.length > 1
         frequency.delete(top_one)
         top_two = frequency.keys.last
-        if readers.length > 3
+        if readers.length > 2
           frequency.delete(top_two)
           top_three = frequency.keys.last
         end

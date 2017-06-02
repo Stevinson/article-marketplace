@@ -86,7 +86,7 @@
     </div>
 
     <!-- Number of reviews -->
-    <p>(<%= @article.reviews.length %> reviews)</p>
+    <p>(<%= pluralize @article.reviews.size, "review" %>)</p>
     <br>
 
     <!-- Reviews' rating and body -->

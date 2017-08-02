@@ -25,7 +25,7 @@
               <% if article.photo %>
                 <% photo = cl_image_path article.photo.path %>
               <% else %>
-                <% photo = image_path "article-img-macron-putin.jpg" %>
+                <% photo = image_path "default-background.jpg" %>
               <% end %>
               <!-- Added a security so that if there is an article doesn't have a photo in the DB it doesn't break the website -->
               <div class="card-large-image" style="background-image: url('<%= photo %>') "></div>
